@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  HttpClient
+} from '@angular/common/http';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +13,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  credentials = {
+    email: '',
+    password: ''
+  };
 
-  ngOnInit() {
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {}
+
+  submit() {
+    this.http.post('http://localhost:8000/api/login', this.credentials)
+      .subscribe((data) => console.log(data),
+        error => console.log(error));
+    return false;
   }
-
 }
