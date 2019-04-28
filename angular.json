@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "extractCss": true,
             "outputPath": "dist/shopping-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
