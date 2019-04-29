@@ -5,6 +5,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +21,19 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {}
 
   submit() {
-    this.http.post('http://localhost:8000/api/login', this.credentials)
-      .subscribe((data) => console.log(data),
+    // generics
+    this.http.post < any > ('http://localhost:8000/api/login', this.credentials)
+      .subscribe((data) => {
+          const token = data.token;
+          this.router.navigate(['categories/list']);
+        },
         error => console.log(error));
+
     return false;
   }
 }
