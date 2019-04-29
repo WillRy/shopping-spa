@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.http.post < any > ('http://localhost:8000/api/login', this.credentials)
       .subscribe((data) => {
           const token = data.token;
+          window.localStorage.setItem('token', token);
           this.router.navigate(['categories/list']);
         },
         error => console.log(error));

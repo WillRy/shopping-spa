@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  HttpClient
+} from '@angular/common/http';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-category-list',
@@ -7,9 +13,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor() { }
+  categories = [];
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    const token = window.localStorage.getItem('token');
+    this.http.get < Array<any> > ('http://localhost:8000/api/categories', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).subscribe(data => {
+      this.categories = data;
+      console.log(this.categories);
+    });
   }
 
 }
