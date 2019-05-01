@@ -24,6 +24,7 @@ import {
   CategoryListComponent
 } from './components/pages/category/category-list/category-list.component';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
+import { ModalComponent } from './components/bootstrap/modal/modal.component';
 
 const routes: Routes = [{
     path: 'login',
@@ -44,7 +45,8 @@ const routes: Routes = [{
     AppComponent,
     LoginComponent,
     CategoryListComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
