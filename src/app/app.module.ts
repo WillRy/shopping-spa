@@ -23,6 +23,7 @@ import {
 import {
   CategoryListComponent
 } from './components/pages/category/category-list/category-list.component';
+import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 
 const routes: Routes = [{
     path: 'login',
@@ -42,7 +43,8 @@ const routes: Routes = [{
   declarations: [
     AppComponent,
     LoginComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    AlertErrorComponent
   ],
   imports: [
     BrowserModule,

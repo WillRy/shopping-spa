@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
+  showMessageError = false;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {}
@@ -33,7 +35,9 @@ export class LoginComponent implements OnInit {
           window.localStorage.setItem('token', token);
           this.router.navigate(['categories/list']);
         },
-        error => console.log(error));
+        responseError => {
+          this.showMessageError = true;
+        });
 
     return false;
   }
