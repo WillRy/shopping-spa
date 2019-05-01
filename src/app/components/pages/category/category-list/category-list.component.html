@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <td colspan="5">
-            <button class="btn btn-primary" (click)="showModal()">Nova Categoria</button>
+            <button class="btn btn-primary" (click)="showModalInsert()">Nova Categoria</button>
           </td>
         </tr>
         <tr>
@@ -30,21 +30,6 @@
     </table>
   </div>
 </main>
-<form action="" (submit)="submit()" >
 
-<modal (onHide)="hideModal($event)">
-  <div modal-title>
-    Nova categoria
-  </div>
-  <div modal-body>
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="category.name">
-      </div>
-    </div>
-    <div modal-footer>
-      <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary" >Salvar</button>
-    </div>
-</modal>
-</form>
+<category-new-modal (onSuccess)="onInsertSuccess($event)" (onError)="onInsertError($event)"></category-new-modal>
+
