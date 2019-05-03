@@ -6,7 +6,12 @@
   <div modal-body>
     <div class="form-group">
       <label for="name">Nome</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="category.name">
+      <input type="text" class="form-control" name="name" [(ngModel)]="category.name" id="name">
+
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" name="active" id="active" [(ngModel)]="category.active">
+        <label class="form-check-label">Ativo?</label>
+      </div>
     </div>
   </div>
   <div modal-footer>

@@ -30,7 +30,8 @@ export class CategoryNewModalComponent implements OnInit {
   modal: ModalComponent;
 
   category = {
-    name: ''
+    name: '',
+    active: true
   };
 
   constructor(private http: HttpClient) {}

@@ -33,7 +33,8 @@ export class CategoryEditModalComponent implements OnInit {
   modal: ModalComponent;
 
   category = {
-    name: ''
+    name: '',
+    active: true
   };
 
 
