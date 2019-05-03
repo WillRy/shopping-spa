@@ -12,6 +12,7 @@ import {
   HttpClient,
   HttpErrorResponse
 } from '@angular/common/http';
+import { Category } from 'src/app/model';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -29,7 +30,7 @@ export class CategoryNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category = {
+  category: Category = {
     name: '',
     active: true
   };

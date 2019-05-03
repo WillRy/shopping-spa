@@ -13,7 +13,13 @@ import {
 import {
   CategoryEditModalComponent
 } from '../category-edit-modal/category-edit-modal.component';
-import { CategoryDeleteModalComponent } from '../category-delete-modal/category-delete-modal.component';
+import {
+  CategoryDeleteModalComponent
+} from '../category-delete-modal/category-delete-modal.component';
+import {
+  CategoryHttpService
+} from 'src/app/services/http/category-http.service';
+import { Category } from 'src/app/model';
 
 @Component({
   selector: 'app-category-list',
@@ -22,11 +28,11 @@ import { CategoryDeleteModalComponent } from '../category-delete-modal/category-
 })
 export class CategoryListComponent implements OnInit {
 
-  categories = [];
+  categories: Array<Category> = [];
 
   categoryId: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public categoryHttp: CategoryHttpService) {}
 
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
@@ -44,14 +50,7 @@ export class CategoryListComponent implements OnInit {
 
 
   getCategories() {
-    const token = window.localStorage.getItem('token');
-    this.http.get < {
-      data: Array < any >
-    } > ('http://localhost:8000/api/categories', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }).subscribe(response => {
+    this.categoryHttp.list().subscribe(response => {
       this.categories = response.data;
       console.log(this.categories);
     });

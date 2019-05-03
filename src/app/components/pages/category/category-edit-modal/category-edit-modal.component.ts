@@ -13,6 +13,7 @@ import {
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
+import { Category } from 'src/app/model';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class CategoryEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category = {
+  category: Category = {
     name: '',
     active: true
   };

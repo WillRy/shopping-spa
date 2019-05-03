@@ -13,6 +13,9 @@ import {
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
+import {
+  Category
+} from 'src/app/model';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -31,7 +34,7 @@ export class CategoryDeleteModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category = null;
+  category: Category = null;
 
 
   _categoryId: number;
@@ -77,9 +80,11 @@ export class CategoryDeleteModalComponent implements OnInit {
         });
     return false;
   }
+
   showModal() {
     this.modal.show();
   }
+
   hideModal($event) {
     this.modal.hide();
   }
