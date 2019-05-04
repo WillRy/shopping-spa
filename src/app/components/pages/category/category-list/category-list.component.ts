@@ -50,7 +50,7 @@ export class CategoryListComponent implements OnInit {
   };
 
   constructor(
-    public categoryHttp: CategoryHttpService,
+    private categoryHttp: CategoryHttpService,
     protected categoryInsertService: CategoryInsertService,
     protected categoryEditService: CategoryEditService,
     protected categoryDeleteService: CategoryDeleteService) {
