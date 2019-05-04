@@ -1,3 +1,4 @@
+import { CategoryHttpService } from './../../../../services/http/category-http.service';
 import {
   Component,
   OnInit,
@@ -7,12 +8,11 @@ import {
   Input
 } from '@angular/core';
 import {
-  HttpErrorResponse,
-  HttpClient
-} from '@angular/common/http';
+  HttpErrorResponse} from '@angular/common/http';
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
+import { Category } from 'src/app/model';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class CategoryEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category = {
+  category: Category = {
     name: '',
     active: true
   };
@@ -40,7 +40,7 @@ export class CategoryEditModalComponent implements OnInit {
 
   _categoryId: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private categoryHttp: CategoryHttpService) {}
 
   ngOnInit() {}
 
@@ -49,32 +49,17 @@ export class CategoryEditModalComponent implements OnInit {
     const token = window.localStorage.getItem('token');
     this._categoryId = value;
     if (this._categoryId) {
-      this.http.get < {
-        data: any
-      } > (`http://localhost:8000/api/categories/${value}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }).subscribe((response) => {
-        this.category = response.data;
-      }, (error) => {
-
-      });
+      this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
     }
   }
 
   submit() {
     const token = window.localStorage.getItem('token');
-    this.http.put(`http://localhost:8000/api/categories/${this._categoryId}`, this.category, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+    this.categoryHttp.update(this._categoryId, this.category)
       .subscribe(
         (category) => {
           this.onSuccess.emit(category);
           this.modal.hide();
-
         },
         error => {
           this.onError.emit(error);

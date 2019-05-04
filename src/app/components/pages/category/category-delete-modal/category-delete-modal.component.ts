@@ -1,26 +1,29 @@
+import { CategoryHttpService } from './../../../../services/http/category-http.service';
 import {
   Component,
   OnInit,
-  ViewChild,
   Output,
-  EventEmitter
+  EventEmitter,
+  ViewChild,
+  Input
 } from '@angular/core';
+import {
+  HttpErrorResponse} from '@angular/common/http';
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
 import {
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Category } from 'src/app/model';
-import { CategoryHttpService } from 'src/app/services/http/category-http.service';
+  Category
+} from 'src/app/model';
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: 'category-new-modal',
-  templateUrl: './category-new-modal.component.html',
-  styleUrls: ['./category-new-modal.component.css']
+  selector: 'category-delete-modal',
+  templateUrl: './category-delete-modal.component.html',
+  styleUrls: ['./category-delete-modal.component.css']
 })
-export class CategoryNewModalComponent implements OnInit {
+export class CategoryDeleteModalComponent implements OnInit {
+
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSuccess: EventEmitter < any > = new EventEmitter < any > ();
@@ -30,25 +33,27 @@ export class CategoryNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category: Category = {
-    name: '',
-    active: true
-  };
+  category: Category = null;
+
+
+  _categoryId: number;
 
   constructor(private categoryHttp: CategoryHttpService) {}
 
   ngOnInit() {}
 
-  showModal() {
-    this.modal.show();
-  }
-  hideModal($event) {
-    this.modal.hide();
+  @Input()
+  set categoryId(value) {
+    const token = window.localStorage.getItem('token');
+    this._categoryId = value;
+    if (this._categoryId) {
+      this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
+    }
   }
 
-  submit() {
+  destroy() {
     const token = window.localStorage.getItem('token');
-    this.categoryHttp.create(this.category)
+    this.categoryHttp.destroy(this._categoryId)
       .subscribe(
         (category) => {
           this.onSuccess.emit(category);
@@ -59,5 +64,13 @@ export class CategoryNewModalComponent implements OnInit {
           this.onError.emit(error);
         });
     return false;
+  }
+
+  showModal() {
+    this.modal.show();
+  }
+
+  hideModal($event) {
+    this.modal.hide();
   }
 }
