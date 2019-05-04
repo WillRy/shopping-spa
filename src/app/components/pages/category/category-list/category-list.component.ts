@@ -39,12 +39,14 @@ export class CategoryListComponent implements OnInit {
 
   categoryId: number;
 
+  page = 1;
+
   constructor(
     public categoryHttp: CategoryHttpService,
     protected categoryInsertService: CategoryInsertService,
     protected categoryEditService: CategoryEditService,
     protected categoryDeleteService: CategoryDeleteService) {
-
+      console.log('construtor');
     this.categoryInsertService.categoryListComponent = this;
     this.categoryEditService.categoryListComponent = this;
     this.categoryDeleteService.categoryListComponent = this;
@@ -66,7 +68,7 @@ export class CategoryListComponent implements OnInit {
   getCategories() {
     this.categoryHttp.list().subscribe(response => {
       this.categories = response.data;
-      console.log(this.categories);
+      console.log(this.categoryDeleteService);
     });
   }
 
