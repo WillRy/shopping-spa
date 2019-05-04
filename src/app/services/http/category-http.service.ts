@@ -2,7 +2,7 @@ import {
   Injectable
 } from '@angular/core';
 import {
-  HttpClient
+  HttpClient, HttpParams
 } from '@angular/common/http';
 import {
   Observable
@@ -19,12 +19,18 @@ export class CategoryHttpService {
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable < {data: Array<Category>} > {
+  list(page: number): Observable < {data: Array<Category>, meta: any} > {
     const token = window.localStorage.getItem('token');
-    return this.http.get < {data: Array<Category>} > (this.baseUrl, {
+    const params = new HttpParams({
+      fromObject: {
+        page: page + ''
+      }
+    });
+    return this.http.get < {data: Array<Category>, meta: any} > (this.baseUrl, {
       headers: {
         'Authorization': `Bearer ${token}`
-      }
+      },
+      params
     });
   }
 

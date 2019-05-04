@@ -24,7 +24,9 @@ import {
 import {
   CategoryEditService
 } from './category-edit.service';
-import { CategoryDeleteService } from './category-delete.service';
+import {
+  CategoryDeleteService
+} from './category-delete.service';
 
 
 
@@ -39,14 +41,20 @@ export class CategoryListComponent implements OnInit {
 
   categoryId: number;
 
-  page = 1;
+
+
+  pagination = {
+    page: 1,
+    totalItems: 0,
+    itemsPerPage: 5
+  };
 
   constructor(
     public categoryHttp: CategoryHttpService,
     protected categoryInsertService: CategoryInsertService,
     protected categoryEditService: CategoryEditService,
     protected categoryDeleteService: CategoryDeleteService) {
-      console.log('construtor');
+    console.log('construtor');
     this.categoryInsertService.categoryListComponent = this;
     this.categoryEditService.categoryListComponent = this;
     this.categoryDeleteService.categoryListComponent = this;
@@ -66,10 +74,16 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list().subscribe(response => {
+    this.categoryHttp.list(this.pagination.page).subscribe(response => {
       this.categories = response.data;
-      console.log(this.categoryDeleteService);
+      this.pagination.totalItems = response.meta.total;
+      this.pagination.itemsPerPage = response.meta.per_page;
     });
+  }
+
+  pageChanged(page) {
+    this.pagination.page = page;
+    this.getCategories();
   }
 
 }
