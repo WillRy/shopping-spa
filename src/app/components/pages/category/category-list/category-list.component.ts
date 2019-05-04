@@ -1,5 +1,4 @@
 import {
-  HttpClient,
   HttpErrorResponse
 } from '@angular/common/http';
 import {
@@ -32,7 +31,7 @@ export class CategoryListComponent implements OnInit {
 
   categoryId: number;
 
-  constructor(private http: HttpClient, public categoryHttp: CategoryHttpService) {}
+  constructor(public categoryHttp: CategoryHttpService) {}
 
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;

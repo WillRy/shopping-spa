@@ -9,10 +9,10 @@ import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
 import {
-  HttpClient,
   HttpErrorResponse
 } from '@angular/common/http';
 import { Category } from 'src/app/model';
+import { CategoryHttpService } from 'src/app/services/http/category-http.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -35,7 +35,7 @@ export class CategoryNewModalComponent implements OnInit {
     active: true
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private categoryHttp: CategoryHttpService) {}
 
   ngOnInit() {}
 
@@ -48,11 +48,7 @@ export class CategoryNewModalComponent implements OnInit {
 
   submit() {
     const token = window.localStorage.getItem('token');
-    this.http.post('http://localhost:8000/api/categories', this.category, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+    this.categoryHttp.create(this.category)
       .subscribe(
         (category) => {
           this.onSuccess.emit(category);
