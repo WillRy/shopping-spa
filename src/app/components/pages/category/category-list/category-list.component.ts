@@ -1,7 +1,4 @@
 import {
-  HttpErrorResponse
-} from '@angular/common/http';
-import {
   Component,
   OnInit,
   ViewChild
@@ -18,7 +15,18 @@ import {
 import {
   CategoryHttpService
 } from 'src/app/services/http/category-http.service';
-import { Category } from 'src/app/model';
+import {
+  Category
+} from 'src/app/model';
+import {
+  CategoryInsertService
+} from './category-insert.service';
+import {
+  CategoryEditService
+} from './category-edit.service';
+import { CategoryDeleteService } from './category-delete.service';
+
+
 
 @Component({
   selector: 'app-category-list',
@@ -27,11 +35,20 @@ import { Category } from 'src/app/model';
 })
 export class CategoryListComponent implements OnInit {
 
-  categories: Array<Category> = [];
+  categories: Array < Category > = [];
 
   categoryId: number;
 
-  constructor(public categoryHttp: CategoryHttpService) {}
+  constructor(
+    public categoryHttp: CategoryHttpService,
+    protected categoryInsertService: CategoryInsertService,
+    protected categoryEditService: CategoryEditService,
+    protected categoryDeleteService: CategoryDeleteService) {
+
+    this.categoryInsertService.categoryListComponent = this;
+    this.categoryEditService.categoryListComponent = this;
+    this.categoryDeleteService.categoryListComponent = this;
+  }
 
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
@@ -46,51 +63,11 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
   }
 
-
-
   getCategories() {
     this.categoryHttp.list().subscribe(response => {
       this.categories = response.data;
       console.log(this.categories);
     });
-  }
-
-  showModalInsert() {
-    this.categoryNewModal.showModal();
-  }
-
-  onInsertSuccess($event: any) {
-    this.getCategories();
-  }
-
-  onInsertError($event: HttpErrorResponse) {
-    console.log($event);
-  }
-
-  showModalEdit(categoryId: number) {
-    this.categoryId = categoryId;
-    this.categoryEditModal.showModal();
-  }
-
-  onEditSuccess($event: any) {
-    this.getCategories();
-  }
-
-  onEditError($event: HttpErrorResponse) {
-    console.log($event);
-  }
-
-  showModalDelete(categoryId: number) {
-    this.categoryId = categoryId;
-    this.categoryDeleteModal.showModal();
-  }
-
-  onDeleteSuccess($event: any) {
-    this.getCategories();
-  }
-
-  onDeleteError($event: HttpErrorResponse) {
-    console.log($event);
   }
 
 }
