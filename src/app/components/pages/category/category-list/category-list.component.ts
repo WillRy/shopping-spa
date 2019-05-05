@@ -51,10 +51,9 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     private categoryHttp: CategoryHttpService,
-    protected categoryInsertService: CategoryInsertService,
-    protected categoryEditService: CategoryEditService,
-    protected categoryDeleteService: CategoryDeleteService) {
-    console.log('construtor');
+    public categoryInsertService: CategoryInsertService,
+    public categoryEditService: CategoryEditService,
+    public categoryDeleteService: CategoryDeleteService) {
     this.categoryInsertService.categoryListComponent = this;
     this.categoryEditService.categoryListComponent = this;
     this.categoryDeleteService.categoryListComponent = this;

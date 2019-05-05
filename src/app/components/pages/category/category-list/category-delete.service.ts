@@ -30,7 +30,7 @@ export class CategoryDeleteService {
         this.__categoryListComponent.categoryDeleteModal.showModal();
     }
 
-    onDeleteSuccess() {
+    onDeleteSuccess($event: any) {
         this.notifyMessage.success('Categoria excluida com sucesso');
         this.__categoryListComponent.getCategories();
     }
