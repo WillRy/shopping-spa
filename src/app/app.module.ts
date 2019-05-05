@@ -42,6 +42,7 @@ import {
   NgxPaginationModule
 } from 'ngx-pagination';
 import { ProductListComponent } from './components/pages/product/product-list/product-list.component';
+import { ProductNewModalComponent } from './components/pages/product/product-new-modal/product-new-modal.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -70,7 +71,8 @@ const routes: Routes = [{
     CategoryNewModalComponent,
     CategoryEditModalComponent,
     CategoryDeleteModalComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductNewModalComponent
   ],
   imports: [
     BrowserModule,

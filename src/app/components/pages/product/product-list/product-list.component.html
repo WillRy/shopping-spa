@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <td colspan="5">
-              <button class="btn btn-primary">Novo Produto</button>
+              <button class="btn btn-primary" (click)="productInsertService.showModalInsert()">Novo Produto</button>
             </td>
           </tr>
           <tr>
@@ -43,3 +43,4 @@
     </div>
   </div>
 </main>
+<product-new-modal (onSuccess)="productInsertService.onInsertSuccess($event)" (onError)="productInsertService.onInsertError($event)"></product-new-modal>

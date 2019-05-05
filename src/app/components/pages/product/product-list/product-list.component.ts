@@ -3,9 +3,18 @@ import {
 } from './../../../../model';
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
-import { ProductHttpService } from 'src/app/services/http/product-http.service';
+import {
+  ProductHttpService
+} from 'src/app/services/http/product-http.service';
+import {
+  ProductNewModalComponent
+} from '../product-new-modal/product-new-modal.component';
+import {
+  ProductInsertService
+} from './product-insert.service';
 
 @Component({
   selector: 'app-product-list',
@@ -24,7 +33,15 @@ export class ProductListComponent implements OnInit {
     itemsPerPage: 5
   };
 
-  constructor(private productHttpService: ProductHttpService) {}
+  constructor(
+    private productHttpService: ProductHttpService,
+    public productInsertService: ProductInsertService
+  ) {
+    this.productInsertService.productListComponent = this;
+  }
+
+  @ViewChild(ProductNewModalComponent)
+  productNewModel: ProductNewModalComponent;
 
   ngOnInit() {
     this.getProducts();

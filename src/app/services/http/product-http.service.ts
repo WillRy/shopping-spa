@@ -26,4 +26,17 @@ export class ProductHttpService {
       params
     });
   }
+
+  get() {}
+
+  create(data: Product): Observable< Product > {
+    const token = window.localStorage.getItem('token');
+    return this.http.post< Product >(this.baseUrl, data, {
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
+
 }
+
