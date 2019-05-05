@@ -1,5 +1,5 @@
 <form (submit)="submit()" >
-  <modal>
+  <modal (onHide)="hideModal($event)">
     <div modal-title>
       Novo produto
     </div>
