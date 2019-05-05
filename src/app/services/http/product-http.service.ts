@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,16 @@ export class ProductHttpService {
     });
   }
 
-  get() {}
+  get(id: number): Observable < Product > {
+    const token = window.localStorage.getItem('token');
+    return this.http.get < {data: Product} > (`${this.baseUrl}/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(response => response.data)
+    );
+  }
 
   create(data: Product): Observable< Product > {
     const token = window.localStorage.getItem('token');
@@ -38,5 +48,15 @@ export class ProductHttpService {
     });
   }
 
-}
+  update(id: number, data: Product): Observable < Product > {
+    const token = window.localStorage.getItem('token');
+    return this.http.put < {data: Product} > (`${this.baseUrl}/${id}`, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(response => response.data)
+    );
+  }
 
+}

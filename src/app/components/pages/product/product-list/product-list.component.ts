@@ -15,6 +15,8 @@ import {
 import {
   ProductInsertService
 } from './product-insert.service';
+import { ProductEditService } from './product-edit.service';
+import { ProductEditModalComponent } from '../product-edit-modal/product-edit-modal.component';
 
 @Component({
   selector: 'app-product-list',
@@ -35,13 +37,18 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productHttpService: ProductHttpService,
-    public productInsertService: ProductInsertService
+    public productInsertService: ProductInsertService,
+    public productEditService: ProductEditService
   ) {
     this.productInsertService.productListComponent = this;
+    this.productEditService.productListComponent = this;
   }
 
   @ViewChild(ProductNewModalComponent)
   productNewModel: ProductNewModalComponent;
+
+  @ViewChild(ProductEditModalComponent)
+  productEditModal: ProductEditModalComponent;
 
   ngOnInit() {
     this.getProducts();
