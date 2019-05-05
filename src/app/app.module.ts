@@ -44,6 +44,7 @@ import {
 import { ProductListComponent } from './components/pages/product/product-list/product-list.component';
 import { ProductNewModalComponent } from './components/pages/product/product-new-modal/product-new-modal.component';
 import { ProductEditModalComponent } from './components/pages/product/product-edit-modal/product-edit-modal.component';
+import { ProductDeleteModalComponent } from './components/pages/product/product-delete-modal/product-delete-modal.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -74,7 +75,8 @@ const routes: Routes = [{
     CategoryDeleteModalComponent,
     ProductListComponent,
     ProductNewModalComponent,
-    ProductEditModalComponent
+    ProductEditModalComponent,
+    ProductDeleteModalComponent
   ],
   imports: [
     BrowserModule,

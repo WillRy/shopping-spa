@@ -1,14 +1,14 @@
 import {
+  ModalComponent
+} from './../../../bootstrap/modal/modal.component';
+import {
   Component,
   OnInit,
+  Input,
   ViewChild,
-  EventEmitter,
   Output,
-  Input
+  EventEmitter
 } from '@angular/core';
-import {
-  ModalComponent
-} from 'src/app/components/bootstrap/modal/modal.component';
 import {
   Product
 } from 'src/app/model';
@@ -20,12 +20,16 @@ import {
 } from '@angular/common/http';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'product-edit-modal',
-  templateUrl: './product-edit-modal.component.html',
-  styleUrls: ['./product-edit-modal.component.css']
+// tslint:disable-next-line: component-selector
+  selector: 'product-delete-modal',
+  templateUrl: './product-delete-modal.component.html',
+  styleUrls: ['./product-delete-modal.component.css']
 })
-export class ProductEditModalComponent implements OnInit {
+export class ProductDeleteModalComponent implements OnInit {
+
+  product: Product = null;
+
+  _productId: number;
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSuccess: EventEmitter < any > = new EventEmitter < any > ();
@@ -34,15 +38,6 @@ export class ProductEditModalComponent implements OnInit {
 
   @ViewChild(ModalComponent)
   modal: ModalComponent;
-
-  product: Product = {
-    name: '',
-    active: true,
-    description: '',
-    price: 0
-  };
-
-  _productId: number;
 
   constructor(private productHttp: ProductHttpService) {}
 
@@ -56,22 +51,25 @@ export class ProductEditModalComponent implements OnInit {
     }
   }
 
-  submit() {
-    this.productHttp.update(this._productId, this.product).subscribe(
-      (product) => {
-        this.onSuccess.emit(product);
-        this.modal.hide();
-      },
-      (error) => {
-        this.onError.emit(error);
-      });
+  destroy() {
+    this.productHttp.destroy(this._productId)
+      .subscribe(
+        (product) => {
+          this.onSuccess.emit(product);
+          this.modal.hide();
+
+        },
+        error => {
+          this.onError.emit(error);
+        });
+    return false;
   }
 
   showModal() {
     this.modal.show();
   }
+
   hideModal($event) {
     this.modal.hide();
   }
-
 }

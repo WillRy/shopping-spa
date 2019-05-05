@@ -59,4 +59,13 @@ export class ProductHttpService {
     );
   }
 
+  destroy(id: number): Observable < any > {
+    const token = window.localStorage.getItem('token');
+    return this.http.delete(`${this.baseUrl}/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
+
 }
