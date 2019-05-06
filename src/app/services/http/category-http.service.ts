@@ -9,11 +9,12 @@ import {
 } from 'rxjs/internal/Observable';
 import { Category } from 'src/app/model';
 import {map} from 'rxjs/operators';
+import { HttpResource } from './http-resource';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryHttpService {
+export class CategoryHttpService implements HttpResource<Category> {
 
   private baseUrl = 'http://localhost:8000/api/categories';
 
