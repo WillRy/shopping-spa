@@ -46,9 +46,17 @@ import { ProductNewModalComponent } from './components/pages/product/product-new
 import { ProductEditModalComponent } from './components/pages/product/product-edit-modal/product-edit-modal.component';
 import { ProductDeleteModalComponent } from './components/pages/product/product-delete-modal/product-delete-modal.component';
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+import { UserListComponent } from './components/pages/user/user-list/user-list.component';
+import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
+import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
+import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'users/list',
+    component: UserListComponent
   },
   {
     path: 'categories/list',
@@ -78,7 +86,11 @@ const routes: Routes = [{
     ProductNewModalComponent,
     ProductEditModalComponent,
     ProductDeleteModalComponent,
-    NumberFormatBrPipe
+    NumberFormatBrPipe,
+    UserListComponent,
+    UserNewModalComponent,
+    UserEditModalComponent,
+    UserDeleteModalComponent
   ],
   imports: [
     BrowserModule,
