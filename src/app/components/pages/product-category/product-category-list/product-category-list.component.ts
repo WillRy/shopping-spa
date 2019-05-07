@@ -19,6 +19,12 @@ import {
 import {
   CategoryHttpService
 } from 'src/app/services/http/category-http.service';
+import {
+  HttpErrorResponse
+} from '@angular/common/http';
+import {
+  NotifyMessageService
+} from 'src/app/services/notify-message.service';
 @Component({
   selector: 'app-product-category-list',
   templateUrl: './product-category-list.component.html',
@@ -32,19 +38,16 @@ export class ProductCategoryListComponent implements OnInit {
 
   productCategory: ProductCategory = null;
 
-  categories: Category[] = [];
 
-  categoriesId: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private productHttp: ProductHttpService,
     private productCategoryHttp: ProductCategoryHttpService,
-    private categoryHttp: CategoryHttpService
+    private notifyMessage: NotifyMessageService
   ) {}
 
   ngOnInit() {
-    this.getCategories();
     this.route.params.subscribe((params) => {
       this.productId = params.product;
       this.getProduct();
@@ -69,27 +72,13 @@ export class ProductCategoryListComponent implements OnInit {
     );
   }
 
-  getCategories() {
-    this.categoryHttp.list(1).subscribe(response => {
-      this.categories = response.data;
-    });
+  onInsertSuccess($event: any) {
+    this.notifyMessage.success('Categorias incluidas com sucesso');
+    this.getProductCategory();
   }
 
-  submit() {
-    const categoriesId = this.mergeCategories();
-    this.productCategoryHttp.create(this.productId, categoriesId).subscribe((productCategory) => {
-      this.getProductCategory();
-    });
-    return false;
-  }
-
-  // metodo que exclui da lista de categorias enviadas pelo usuario, as categorias que ja existem
-  // no produto
-  private mergeCategories(): number[] {
-    const categoriesId = this.productCategory.categories.map( (category) => category.id );
-    const newCategoriesId = this.categoriesId.filter((category) => {
-      return categoriesId.indexOf(category) === -1;
-    });
-    return categoriesId.concat(newCategoriesId);
+  onInsertError($event: HttpErrorResponse) {
+    this.notifyMessage.error('Erro ao cadastrar categoria no produto');
+    console.log($event);
   }
 }
