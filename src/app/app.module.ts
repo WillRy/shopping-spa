@@ -50,6 +50,7 @@ import { UserListComponent } from './components/pages/user/user-list/user-list.c
 import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
 import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
 import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
+import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -61,6 +62,10 @@ const routes: Routes = [{
   {
     path: 'categories/list',
     component: CategoryListComponent
+  },
+  {
+    path: 'products/:product/categories/list',
+    component: ProductCategoryListComponent
   },
   {
     path: 'products/list',
@@ -90,7 +95,8 @@ const routes: Routes = [{
     UserListComponent,
     UserNewModalComponent,
     UserEditModalComponent,
-    UserDeleteModalComponent
+    UserDeleteModalComponent,
+    ProductCategoryListComponent
   ],
   imports: [
     BrowserModule,

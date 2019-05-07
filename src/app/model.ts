@@ -1,3 +1,4 @@
+import { Category } from 'src/app/model';
 export interface Category {
     id ?: number;
     name: string;
@@ -25,14 +26,18 @@ export interface Product {
     };
 }
 export interface User {
-    id?: number;
+    id ?: number;
     name: string;
     email: string;
-    password?: string;
+    password ?: string;
     readonly created_at ?: {
         date: string
     };
     readonly updated_at ?: {
         date: string
     };
+}
+export interface ProductCategory {
+    product: Product;
+    categories: Category[];
 }
