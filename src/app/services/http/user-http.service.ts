@@ -1,4 +1,4 @@
-import { HttpResource } from './http-resource';
+import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/model';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -13,12 +13,12 @@ export class UserHttpService implements HttpResource<User> {
 
   constructor(private http: HttpClient) { }
 
-  list(page: number): Observable < {data: Array<User>, meta: any} > {
+  list(searchParams: SearchParams): Observable < {data: Array<User>, meta: any} > {
     const token = window.localStorage.getItem('token');
+
+    const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
-      fromObject: {
-        page: page + ''
-      }
+      fromObject: (<any>sParams)
     });
 
     return this.http.get < {data: Array<User>, meta: any} >(this.baseUrl, {

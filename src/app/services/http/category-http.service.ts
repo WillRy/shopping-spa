@@ -9,7 +9,7 @@ import {
 } from 'rxjs/internal/Observable';
 import { Category } from 'src/app/model';
 import {map} from 'rxjs/operators';
-import { HttpResource } from './http-resource';
+import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +20,14 @@ export class CategoryHttpService implements HttpResource<Category> {
 
   constructor(private http: HttpClient) {}
 
-  list(page: number): Observable < {data: Array<Category>, meta: any} > {
+  list(searchParams: SearchParams): Observable < {data: Array<Category>, meta: any} > {
     const token = window.localStorage.getItem('token');
+
+    const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
-      fromObject: {
-        page: page + ''
-      }
+      fromObject: (<any>sParams)
     });
+
     return this.http.get < {data: Array<Category>, meta: any} > (this.baseUrl, {
       headers: {
         'Authorization': `Bearer ${token}`
