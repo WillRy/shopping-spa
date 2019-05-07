@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userHttpService.list(this.pagination.page).subscribe((response) => {
+    this.userHttpService.list({page: this.pagination.page}).subscribe((response) => {
       this.users = response.data;
       this.pagination.totalItems = response.meta.total;
       this.pagination.itemsPerPage = response.meta.per_page;

@@ -1,9 +1,15 @@
 import {
     Observable
 } from 'rxjs';
+
+export interface SearchParam {
+    page?: number;
+    all?: any;
+}
+
 export interface HttpResource < T > {
 
-    list(page: number): Observable < {
+    list(searchParams: SearchParam): Observable < {
         data: Array < T > ,
         meta: any
     } > ;

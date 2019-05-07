@@ -62,7 +62,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productHttpService.list(this.pagination.page).subscribe((response) => {
+    this.productHttpService.list({page: this.pagination.page}).subscribe((response) => {
       this.products = response.data;
       this.pagination.totalItems = response.meta.total;
       this.pagination.itemsPerPage = response.meta.per_page;

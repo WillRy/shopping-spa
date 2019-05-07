@@ -54,7 +54,7 @@ export class ProductCategoryNewComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list(1).subscribe(response => {
+    this.categoryHttp.list({all: true}).subscribe(response => {
       this.categories = response.data;
     });
   }
