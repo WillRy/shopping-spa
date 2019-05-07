@@ -52,6 +52,7 @@ import { UserEditModalComponent } from './components/pages/user/user-edit-modal/
 import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+import { ProductCategoryDeleteModalComponent } from './components/pages/product-category/product-category-delete-modal/product-category-delete-modal.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -98,7 +99,8 @@ const routes: Routes = [{
     UserEditModalComponent,
     UserDeleteModalComponent,
     ProductCategoryListComponent,
-    ProductCategoryNewComponent
+    ProductCategoryNewComponent,
+    ProductCategoryDeleteModalComponent
   ],
   imports: [
     BrowserModule,

@@ -42,4 +42,13 @@ export class ProductCategoryHttpService {
     }
     return baseUrl;
   }
+
+  destroy(productId: number, categoryId: number): Observable<any> {
+    const token = window.localStorage.getItem('token');
+    return this.http.delete < {data: ProductCategory} > (this.getBaseUrl(productId, categoryId), {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
 }

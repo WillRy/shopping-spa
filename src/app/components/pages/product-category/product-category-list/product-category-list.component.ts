@@ -3,7 +3,8 @@ import {
 } from 'src/app/services/http/product-http.service';
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import {
   ActivatedRoute
@@ -25,6 +26,7 @@ import {
 import {
   NotifyMessageService
 } from 'src/app/services/notify-message.service';
+import { ProductCategoryDeleteModalComponent } from '../product-category-delete-modal/product-category-delete-modal.component';
 @Component({
   selector: 'app-product-category-list',
   templateUrl: './product-category-list.component.html',
@@ -38,7 +40,10 @@ export class ProductCategoryListComponent implements OnInit {
 
   productCategory: ProductCategory = null;
 
+  categoryId: number;
 
+  @ViewChild(ProductCategoryDeleteModalComponent)
+  productCategoryDeleteModal: ProductCategoryDeleteModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -79,6 +84,21 @@ export class ProductCategoryListComponent implements OnInit {
 
   onInsertError($event: HttpErrorResponse) {
     this.notifyMessage.error('Erro ao cadastrar categoria no produto');
+    console.log($event);
+  }
+
+  showModalDelete(categoryId: number) {
+    this.categoryId = categoryId;
+    this.productCategoryDeleteModal.showModal();
+  }
+
+  onDeleteSuccess($event: any) {
+    this.notifyMessage.success('Categoria desvinculada com sucesso');
+    this.getProductCategory();
+  }
+
+  onDeleteError($event: HttpErrorResponse) {
+    this.notifyMessage.error('Não foi possível desvincular a categoria');
     console.log($event);
   }
 }
