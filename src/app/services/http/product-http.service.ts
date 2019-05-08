@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from 'src/app/model';
 import {map} from 'rxjs/operators';
 import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource
 export class ProductHttpService implements HttpResource<Product> {
   private baseUrl = 'http://localhost:8000/api/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   list(searchParams: SearchParams): Observable < {data: Array<Product>, meta: any} > {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
 
     const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
@@ -30,7 +31,7 @@ export class ProductHttpService implements HttpResource<Product> {
   }
 
   get(id: number): Observable < Product > {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http.get < {data: Product} > (`${this.baseUrl}/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -41,7 +42,7 @@ export class ProductHttpService implements HttpResource<Product> {
   }
 
   create(data: Product): Observable< Product > {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http.post< Product >(this.baseUrl, data, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -50,7 +51,7 @@ export class ProductHttpService implements HttpResource<Product> {
   }
 
   update(id: number, data: Product): Observable < Product > {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http.put < {data: Product} > (`${this.baseUrl}/${id}`, data, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -61,7 +62,7 @@ export class ProductHttpService implements HttpResource<Product> {
   }
 
   destroy(id: number): Observable < any > {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http.delete(`${this.baseUrl}/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
