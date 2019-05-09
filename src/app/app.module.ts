@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import {
   BrowserModule
 } from '@angular/platform-browser';
@@ -52,7 +53,9 @@ import { UserEditModalComponent } from './components/pages/user/user-edit-modal/
 import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+// tslint:disable-next-line: max-line-length
 import { ProductCategoryDeleteModalComponent } from './components/pages/product-category/product-category-delete-modal/product-category-delete-modal.component';
+import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -79,6 +82,17 @@ const routes: Routes = [{
     pathMatch: 'full'
   }
 ];
+
+function jwtFactory(authService: AuthService) {
+  return {
+    tokenGetter: () => {
+      return authService.getToken();
+    },
+    whitelistedDomains: [
+      new RegExp('localhost:8000/*')
+    ]
+  };
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +121,14 @@ const routes: Routes = [{
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    NgxPaginationModule
+    NgxPaginationModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtFactory,
+        deps: [AuthService]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,24 +14,14 @@ export class ProductCategoryHttpService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   list(productId: number): Observable<ProductCategory> {
-    const token = this.authService.getToken();
-    return this.http.get < {data: ProductCategory} > (this.getBaseUrl(productId), {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }).pipe(
+    return this.http.get < {data: ProductCategory} > (this.getBaseUrl(productId)).pipe(
       map(response => response.data)
     );
   }
 
   create(productId: number, categoriesId: number[]): Observable<ProductCategory> {
-    const token = this.authService.getToken();
     // tslint:disable-next-line: max-line-length
-    return this.http.post < {data: ProductCategory} > (this.getBaseUrl(productId), {'categories': categoriesId}, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }).pipe(
+    return this.http.post < {data: ProductCategory} > (this.getBaseUrl(productId), {'categories': categoriesId}).pipe(
       map(response => response.data)
     );
   }
@@ -45,11 +35,6 @@ export class ProductCategoryHttpService {
   }
 
   destroy(productId: number, categoryId: number): Observable<any> {
-    const token = window.localStorage.getItem('token');
-    return this.http.delete < {data: ProductCategory} > (this.getBaseUrl(productId, categoryId), {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    return this.http.delete < {data: ProductCategory} > (this.getBaseUrl(productId, categoryId));
   }
 }
