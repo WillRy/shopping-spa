@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { ProductCategory } from 'src/app/model';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductCategoryHttpService {
 
-  private baseAPI = `http://localhost:8000/api`;
+  private baseAPI = `${environment.api.url}`;
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   list(productId: number): Observable<ProductCategory> {

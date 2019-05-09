@@ -11,13 +11,14 @@ import { Category } from 'src/app/model';
 import {map} from 'rxjs/operators';
 import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
 import { AuthService } from '../auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryHttpService implements HttpResource<Category> {
 
-  private baseUrl = 'http://localhost:8000/api/categories';
+  private baseUrl = `${environment.api.url}/categories`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
