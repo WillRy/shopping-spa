@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import {
   HttpClient
 } from '@angular/common/http';
@@ -23,22 +24,19 @@ export class LoginComponent implements OnInit {
 
   showMessageError = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
 
   submit() {
     // generics
-    this.http.post < any > ('http://localhost:8000/api/login', this.credentials)
+    this.authService.login(this.credentials)
       .subscribe((data) => {
-          const token = data.token;
-          window.localStorage.setItem('token', token);
           this.router.navigate(['categories/list']);
         },
         responseError => {
           this.showMessageError = true;
         });
-
     return false;
   }
 }
