@@ -57,25 +57,30 @@ import { ProductCategoryNewComponent } from './components/pages/product-category
 import { ProductCategoryDeleteModalComponent } from './components/pages/product-category/product-category-delete-modal/product-category-delete-modal.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
   },
   {
     path: 'users/list',
-    component: UserListComponent
+    component: UserListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'categories/list',
-    component: CategoryListComponent
+    component: CategoryListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'products/:product/categories/list',
-    component: ProductCategoryListComponent
+    component: ProductCategoryListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'products/list',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
