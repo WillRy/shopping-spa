@@ -44,7 +44,6 @@ export class CategoryDeleteModalComponent implements OnInit {
 
   @Input()
   set categoryId(value) {
-    const token = window.localStorage.getItem('token');
     this._categoryId = value;
     if (this._categoryId) {
       this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
@@ -52,7 +51,6 @@ export class CategoryDeleteModalComponent implements OnInit {
   }
 
   destroy() {
-    const token = window.localStorage.getItem('token');
     this.categoryHttp.destroy(this._categoryId)
       .subscribe(
         (category) => {

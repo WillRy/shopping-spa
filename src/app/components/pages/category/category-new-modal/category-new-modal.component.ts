@@ -47,7 +47,6 @@ export class CategoryNewModalComponent implements OnInit {
   }
 
   submit() {
-    const token = window.localStorage.getItem('token');
     this.categoryHttp.create(this.category)
       .subscribe(
         (category) => {

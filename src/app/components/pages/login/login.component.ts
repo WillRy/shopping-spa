@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-    // generics
     this.authService.login(this.credentials)
       .subscribe((data) => {
           this.router.navigate(['categories/list']);

@@ -46,7 +46,6 @@ export class CategoryEditModalComponent implements OnInit {
 
   @Input()
   set categoryId(value) {
-    const token = window.localStorage.getItem('token');
     this._categoryId = value;
     if (this._categoryId) {
       this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
@@ -54,7 +53,6 @@ export class CategoryEditModalComponent implements OnInit {
   }
 
   submit() {
-    const token = window.localStorage.getItem('token');
     this.categoryHttp.update(this._categoryId, this.category)
       .subscribe(
         (category) => {

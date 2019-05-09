@@ -16,8 +16,6 @@ export class ProductHttpService implements HttpResource<Product> {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   list(searchParams: SearchParams): Observable < {data: Array<Product>, meta: any} > {
-    const token = this.authService.getToken();
-
     const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
       fromObject: (<any>sParams)
