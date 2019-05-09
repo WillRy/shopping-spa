@@ -56,6 +56,7 @@ import { ProductCategoryNewComponent } from './components/pages/product-category
 // tslint:disable-next-line: max-line-length
 import { ProductCategoryDeleteModalComponent } from './components/pages/product-category/product-category-delete-modal/product-category-delete-modal.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
+import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -114,7 +115,8 @@ function jwtFactory(authService: AuthService) {
     UserDeleteModalComponent,
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
-    ProductCategoryDeleteModalComponent
+    ProductCategoryDeleteModalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
