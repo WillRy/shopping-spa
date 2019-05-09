@@ -19,7 +19,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import {
-  HttpClientModule
+  HttpClientModule, HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import {
   CategoryListComponent
@@ -58,6 +58,7 @@ import { ProductCategoryDeleteModalComponent } from './components/pages/product-
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 import { AuthGuard } from './guards/auth.guard';
+import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 const routes: Routes = [{
     path: 'login',
     component: LoginComponent
@@ -137,7 +138,13 @@ function jwtFactory(authService: AuthService) {
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
