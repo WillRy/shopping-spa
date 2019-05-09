@@ -39,7 +39,6 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
           this.redirectToLoginIfUnauthenticated(eventError);
         })
     );
-    return undefined;
   }
 
   private setNewTokenIfResponseValid(event: HttpEvent < any > ) {
