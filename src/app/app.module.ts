@@ -55,6 +55,7 @@ import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
+import { SortColumnComponent } from './components/commom/sort-column/sort-column.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -89,7 +90,8 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     ProductCategoryDeleteModalComponent,
-    NavbarComponent
+    NavbarComponent,
+    SortColumnComponent
   ],
   imports: [
     BrowserModule,
