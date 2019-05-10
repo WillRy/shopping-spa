@@ -59,6 +59,10 @@ export class CategoryListComponent implements OnInit {
     this.categoryDeleteService.categoryListComponent = this;
   }
 
+  sortColumn = {column: '', sort: ''};
+
+  searchText: string;
+
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
 
@@ -73,15 +77,27 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list({page: this.pagination.page}).subscribe(response => {
+    this.categoryHttp.list({
+      page: this.pagination.page,
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
+    }).subscribe(response => {
       this.categories = response.data;
       this.pagination.totalItems = response.meta.total;
       this.pagination.itemsPerPage = response.meta.per_page;
     });
   }
 
+  sort(sortColumn) {
+    this.getCategories();
+  }
   pageChanged(page) {
     this.pagination.page = page;
+    this.getCategories();
+  }
+
+  search(search: string) {
+    this.searchText = search;
     this.getCategories();
   }
 
