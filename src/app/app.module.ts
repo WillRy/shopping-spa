@@ -56,6 +56,7 @@ import { NavbarComponent } from './components/bootstrap/navbar/navbar.component'
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SortColumnComponent } from './components/commom/sort-column/sort-column.component';
+import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -91,7 +92,8 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryNewComponent,
     ProductCategoryDeleteModalComponent,
     NavbarComponent,
-    SortColumnComponent
+    SortColumnComponent,
+    CategorySearchFormComponent
   ],
   imports: [
     BrowserModule,

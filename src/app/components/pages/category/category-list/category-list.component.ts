@@ -61,6 +61,8 @@ export class CategoryListComponent implements OnInit {
 
   sortColumn = {column: '', sort: ''};
 
+  searchText: string;
+
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
 
@@ -77,7 +79,8 @@ export class CategoryListComponent implements OnInit {
   getCategories() {
     this.categoryHttp.list({
       page: this.pagination.page,
-      sort: this.sortColumn.column === '' ? null : this.sortColumn
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
     }).subscribe(response => {
       this.categories = response.data;
       this.pagination.totalItems = response.meta.total;
@@ -90,6 +93,11 @@ export class CategoryListComponent implements OnInit {
   }
   pageChanged(page) {
     this.pagination.page = page;
+    this.getCategories();
+  }
+
+  search(search: string) {
+    this.searchText = search;
     this.getCategories();
   }
 
