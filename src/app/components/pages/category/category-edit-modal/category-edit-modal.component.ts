@@ -13,6 +13,7 @@ import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
 import { Category } from 'src/app/model';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -32,15 +33,17 @@ export class CategoryEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category: Category = {
-    name: '',
-    active: true
-  };
-
 
   _categoryId: number;
 
-  constructor(private categoryHttp: CategoryHttpService) {}
+  form: FormGroup;
+
+  constructor(private categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: '',
+      active: true
+    });
+  }
 
   ngOnInit() {}
 
@@ -48,12 +51,12 @@ export class CategoryEditModalComponent implements OnInit {
   set categoryId(value) {
     this._categoryId = value;
     if (this._categoryId) {
-      this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
+      this.categoryHttp.get(this._categoryId).subscribe(category => this.form.patchValue(category));
     }
   }
 
   submit() {
-    this.categoryHttp.update(this._categoryId, this.category)
+    this.categoryHttp.update(this._categoryId, this.form.value)
       .subscribe(
         (category) => {
           this.onSuccess.emit(category);

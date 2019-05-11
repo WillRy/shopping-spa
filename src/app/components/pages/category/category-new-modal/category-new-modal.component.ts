@@ -11,8 +11,16 @@ import {
 import {
   HttpErrorResponse
 } from '@angular/common/http';
-import { Category } from 'src/app/model';
-import { CategoryHttpService } from 'src/app/services/http/category-http.service';
+import {
+  Category
+} from 'src/app/model';
+import {
+  CategoryHttpService
+} from 'src/app/services/http/category-http.service';
+import {
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -30,12 +38,15 @@ export class CategoryNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category: Category = {
-    name: '',
-    active: true
-  };
 
-  constructor(private categoryHttp: CategoryHttpService) {}
+  form: FormGroup;
+
+  constructor(private categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: '',
+      active: true
+    });
+  }
 
   ngOnInit() {}
 
@@ -47,9 +58,13 @@ export class CategoryNewModalComponent implements OnInit {
   }
 
   submit() {
-    this.categoryHttp.create(this.category)
+    this.categoryHttp.create(this.form.value)
       .subscribe(
         (category) => {
+          this.form.reset({
+            name: '',
+            active: true
+          });
           this.onSuccess.emit(category);
           this.modal.hide();
 

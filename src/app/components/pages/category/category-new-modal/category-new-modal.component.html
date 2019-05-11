@@ -4,19 +4,12 @@
     Nova categoria
   </div>
   <div modal-body>
-    <div class="form-group">
-      <label for="name">Nome</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="category.name" id="name">
 
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" name="active" id="active" [(ngModel)]="category.active">
-        <label class="form-check-label">Ativo?</label>
-      </div>
-    </div>
+    <category-form [form]="form"></category-form>
   </div>
   <div modal-footer>
     <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-    <button type="submit" class="btn btn-primary">Incluir</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Incluir</button>
   </div>
 </modal>
 </form>

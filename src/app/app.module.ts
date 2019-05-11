@@ -12,7 +12,7 @@ import {
   LoginComponent
 } from './components/pages/login/login.component';
 import {
-  FormsModule
+  FormsModule, ReactiveFormsModule
 } from '@angular/forms';
 import {
   HttpClientModule, HTTP_INTERCEPTORS
@@ -57,6 +57,7 @@ import { RefreshTokenInterceptorService } from './services/refresh-token-interce
 import { AppRoutingModule } from './app-routing.module';
 import { SortColumnComponent } from './components/commom/sort-column/sort-column.component';
 import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
+import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -93,11 +94,13 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryDeleteModalComponent,
     NavbarComponent,
     SortColumnComponent,
-    CategorySearchFormComponent
+    CategorySearchFormComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
