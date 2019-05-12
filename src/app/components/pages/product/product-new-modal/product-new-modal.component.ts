@@ -17,6 +17,13 @@ import {
 import {
   Product
 } from 'src/app/model';
+import {
+  FormGroup,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
+import fieldsOptions from '../product-form/product-fields-options';
+
 
 
 @Component({
@@ -27,7 +34,17 @@ import {
 })
 export class ProductNewModalComponent implements OnInit {
 
-  constructor(private productHttpService: ProductHttpService) {}
+  form: FormGroup;
+  errors = {};
+
+  constructor(private productHttpService: ProductHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      active: true
+    });
+  }
 
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSuccess: EventEmitter < any > = new EventEmitter < any > ();
@@ -37,12 +54,6 @@ export class ProductNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  product: Product = {
-    name: '',
-    active: true,
-    description: '',
-    price: 0
-  };
 
   ngOnInit() {}
 
@@ -54,15 +65,21 @@ export class ProductNewModalComponent implements OnInit {
   }
 
   submit() {
-    this.productHttpService.create(this.product).subscribe(
+    this.productHttpService.create(this.form.value).subscribe(
       (product) => {
         this.onSuccess.emit(product);
         this.modal.hide();
       },
-      (error) => {
-        this.onError.emit(error);
+      (responseError) => {
+        if (responseError.status === 422) {
+          this.errors = responseError.error.errors;
+        }
+        this.onError.emit(responseError);
       });
     return false;
   }
 
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
+  }
 }
