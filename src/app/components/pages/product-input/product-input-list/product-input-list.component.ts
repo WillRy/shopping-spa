@@ -72,4 +72,10 @@ export class ProductInputListComponent implements OnInit {
   sort(sortColumn) {
     this.getInputs();
   }
+
+  search(search: string) {
+    this.searchText = search;
+    this.getInputs();
+  }
+
 }

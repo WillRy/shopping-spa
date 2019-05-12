@@ -9,7 +9,7 @@
             <button class="btn btn-primary" (click)="inputService.showModalInsert()">Nova Categoria</button>
           </td>
           <td colspan="4">
-
+            <product-input-search-form (onSearch)="search($event)"></product-input-search-form>
           </td>
         </tr>
         <tr>
