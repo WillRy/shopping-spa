@@ -18,6 +18,8 @@ import {
 import {
   HttpErrorResponse
 } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import fieldsOptions from '../../category/category-form/category-fields-options';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -35,16 +37,20 @@ export class ProductEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  product: Product = {
-    name: '',
-    active: true,
-    description: '',
-    price: 0
-  };
+  form: FormGroup;
+
+  errors = {};
 
   _productId: number;
 
-  constructor(private productHttp: ProductHttpService) {}
+  constructor(private productHttp: ProductHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      active: true
+    });
+  }
 
   ngOnInit() {}
 
@@ -52,18 +58,21 @@ export class ProductEditModalComponent implements OnInit {
   set productId(value) {
     this._productId = value;
     if (this._productId) {
-      this.productHttp.get(this._productId).subscribe(response => this.product = response);
+      this.productHttp.get(this._productId).subscribe(response => this.form.patchValue(response));
     }
   }
 
   submit() {
-    this.productHttp.update(this._productId, this.product).subscribe(
+    this.productHttp.update(this._productId, this.form.value).subscribe(
       (product) => {
         this.onSuccess.emit(product);
         this.modal.hide();
       },
-      (error) => {
-        this.onError.emit(error);
+      (responseError) => {
+        if (responseError.status === 422) {
+          this.errors = responseError.error.errors;
+        }
+        this.onError.emit(responseError);
       });
   }
 
@@ -72,6 +81,10 @@ export class ProductEditModalComponent implements OnInit {
   }
   hideModal($event) {
     this.modal.hide();
+  }
+
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
   }
 
 }
