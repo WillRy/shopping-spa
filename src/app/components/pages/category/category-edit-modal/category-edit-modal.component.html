@@ -1,14 +1,18 @@
-<form action="" (submit)="submit()" >
+<form action="" (submit)="submit()">
   <modal (onHide)="hideModal($event)">
     <div modal-title>
       Editar categoria - {{form.get('name').value}}
     </div>
     <div modal-body>
-        <category-form [form]="form"></category-form>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+
+      <category-form [form]="form"></category-form>
     </div>
     <div modal-footer>
       <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary">Editar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Editar</button>
     </div>
   </modal>
-  </form>
+</form>

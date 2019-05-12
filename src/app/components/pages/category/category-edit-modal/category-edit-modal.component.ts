@@ -13,7 +13,8 @@ import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
 import { Category } from 'src/app/model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import fieldsOptions from '../category-form/category-fields-options';
 
 
 @Component({
@@ -38,9 +39,11 @@ export class CategoryEditModalComponent implements OnInit {
 
   form: FormGroup;
 
+  errors = {};
+
   constructor(private categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      name: '',
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
       active: true
     });
   }
@@ -62,8 +65,11 @@ export class CategoryEditModalComponent implements OnInit {
           this.onSuccess.emit(category);
           this.modal.hide();
         },
-        error => {
-          this.onError.emit(error);
+        responseError => {
+          if (responseError.status === 422) {
+            this.errors = responseError.error.errors;
+          }
+          this.onError.emit(responseError);
         });
     return false;
   }
@@ -74,6 +80,8 @@ export class CategoryEditModalComponent implements OnInit {
     this.modal.hide();
   }
 
-
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
+  }
 
 }
