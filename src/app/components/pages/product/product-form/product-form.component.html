@@ -1,12 +1,12 @@
 <div class="form-group" [formGroup]="form">
-  <label for="name">Nome</label>
+  <label [for]="fieldsOptions.name.id">{{fieldsOptions.name.label}}</label>
   <input type="text" class="form-control" formControlName="name" [id]="fieldsOptions.name.id" isInvalid>
   <field-error [field]="form.get('name')" [label]="fieldsOptions.name.label"
     [messages]="fieldsOptions.name.validationMessage"></field-error>
 </div>
 
 <div class="form-group" [formGroup]="form">
-  <label for="description">Descrição</label>
+  <label [for]="fieldsOptions.description.id">{{fieldsOptions.description.label}}</label>
   <textarea class="form-control" name="description" formControlName="description" [id]="fieldsOptions.description.id"
     isInvalid></textarea>
   <field-error [field]="form.get('description')" [label]="fieldsOptions.description.label"
@@ -14,14 +14,14 @@
 </div>
 
 <div class="form-group" [formGroup]="form">
-  <label for="price">Preço</label>
+  <label [for]="fieldsOptions.price.id">{{fieldsOptions.price.label}}</label>
   <input type="number" class="form-control" name="price" formControlName="price" [id]="fieldsOptions.price.id"
     isInvalid>
-    <field-error [field]="form.get('price')" [label]="fieldsOptions.price.label"
+  <field-error [field]="form.get('price')" [label]="fieldsOptions.price.label"
     [messages]="fieldsOptions.price.validationMessage"></field-error>
 </div>
 
 <div class="form-group form-check" [formGroup]="form">
-  <input type="checkbox" class="form-check-input" name="active" formControlName="active" id="active">
+  <input type="checkbox" class="form-check-input" name="active" formControlName="active" [id]="fieldsOptions.active.id">
   <label class="form-check-label">Ativo?</label>
 </div>
