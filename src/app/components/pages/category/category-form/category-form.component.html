@@ -1,9 +1,14 @@
-<div class="form-group"  [formGroup]="form">
-  <label for="name">Nome</label>
-  <input type="text" class="form-control" name="name"  id="name" formControlName="name" required>
-
+<div class="form-group" [formGroup]="form">
+  <label [for]="fieldsOptions.name.id">{{fieldsOptions.name.label}}</label>
+  <input type="text" class="form-control"
+    formControlName="name"
+    [id]="fieldsOptions.name.id"
+    isInvalid>
+  <field-error [field]="form.get('name')"
+              [label]="fieldsOptions.name.label"
+              [messages]="fieldsOptions.name.validationMessage"></field-error>
   <div class="form-group form-check" [formGroup]="form">
     <input type="checkbox" class="form-check-input" name="active" id="active" formControlName="active">
-    <label class="form-check-label" >Ativo?</label>
+    <label class="form-check-label">Ativo?</label>
   </div>
 </div>

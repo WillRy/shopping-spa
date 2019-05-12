@@ -1,3 +1,4 @@
+import { ValidationMessage } from './../../../../Common/validation-message';
 import {
   FormGroup
 } from '@angular/forms';
@@ -5,11 +6,11 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnChanges
 } from '@angular/core';
-import {
-  Category
-} from 'src/app/model';
+import fieldsOptions from './category-fields-options';
+
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -17,7 +18,7 @@ import {
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.css']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit, OnChanges {
 
   @Input()
   form: FormGroup;
@@ -33,4 +34,7 @@ export class CategoryFormComponent implements OnInit {
     this.changeRef.detectChanges();
   }
 
+  get fieldsOptions(): any {
+    return fieldsOptions;
+  }
 }

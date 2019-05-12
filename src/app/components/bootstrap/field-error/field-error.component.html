@@ -1,0 +1,5 @@
+<ul *ngIf="showError()">
+  <li *ngFor="let key of errorKeys">
+    {{getMessageError(key)}}
+  </li>
+</ul>
