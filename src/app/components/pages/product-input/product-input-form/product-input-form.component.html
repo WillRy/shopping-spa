@@ -1,0 +1,13 @@
+<div class="form-group" [formGroup]="form">
+  <label [for]="fieldsOptions.amount.id">{{fieldsOptions.amount.label}}</label>
+  <input type="number" class="form-control" formControlName="amount" [id]="fieldsOptions.amount.id" isInvalid>
+  <field-error [field]="form.get('amount')" [label]="fieldsOptions.amount.label"
+    [messages]="fieldsOptions.amount.validationMessage"></field-error>
+
+
+  <label [for]="fieldsOptions.product_id.id">{{fieldsOptions.product_id.label}}</label>
+  <input type="number" class="form-control" formControlName="product_id" [id]="fieldsOptions.product_id.id" isInvalid>
+  <field-error [field]="form.get('product_id')" [label]="fieldsOptions.product_id.label"
+    [messages]="fieldsOptions.product_id.validationMessage"></field-error>
+
+</div>
