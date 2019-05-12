@@ -11,8 +11,18 @@ import {
 import {
   HttpErrorResponse
 } from '@angular/common/http';
-import { Category } from 'src/app/model';
-import { CategoryHttpService } from 'src/app/services/http/category-http.service';
+import {
+  Category
+} from 'src/app/model';
+import {
+  CategoryHttpService
+} from 'src/app/services/http/category-http.service';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
+import fieldsOptions from '../category-form/category-fields-options';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -30,12 +40,16 @@ export class CategoryNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  category: Category = {
-    name: '',
-    active: true
-  };
 
-  constructor(private categoryHttp: CategoryHttpService) {}
+  form: FormGroup;
+  errors = {};
+
+  constructor(private categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      active: true
+    });
+  }
 
   ngOnInit() {}
 
@@ -47,16 +61,27 @@ export class CategoryNewModalComponent implements OnInit {
   }
 
   submit() {
-    this.categoryHttp.create(this.category)
+    this.categoryHttp.create(this.form.value)
       .subscribe(
         (category) => {
+          this.form.reset({
+            name: '',
+            active: true
+          });
           this.onSuccess.emit(category);
           this.modal.hide();
 
         },
-        error => {
-          this.onError.emit(error);
+        responseError => {
+          if (responseError.status === 422) {
+            this.errors = responseError.error.errors;
+          }
+          this.onError.emit(responseError);
         });
     return false;
+  }
+
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
   }
 }
