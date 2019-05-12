@@ -42,6 +42,7 @@ export class CategoryNewModalComponent implements OnInit {
 
 
   form: FormGroup;
+  errors = {};
 
   constructor(private categoryHttp: CategoryHttpService, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -71,9 +72,16 @@ export class CategoryNewModalComponent implements OnInit {
           this.modal.hide();
 
         },
-        error => {
-          this.onError.emit(error);
+        responseError => {
+          if (responseError.status === 422) {
+            this.errors = responseError.error.errors;
+          }
+          this.onError.emit(responseError);
         });
     return false;
+  }
+
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
   }
 }
