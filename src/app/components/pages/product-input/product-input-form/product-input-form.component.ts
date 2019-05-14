@@ -15,14 +15,7 @@ export class ProductInputFormComponent implements OnInit {
   @Input()
   form: FormGroup;
 
-  data = [
-    {
-      id: '1', text: 'Laravel'
-    },
-    {
-      id: '2', text: 'Laravel'
-    }
-  ];
+
 
   @ViewChild(Select2Component, {read: ElementRef})
   select2Element: ElementRef;
