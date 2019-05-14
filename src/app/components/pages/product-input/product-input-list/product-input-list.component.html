@@ -1,12 +1,12 @@
 <main>
   <div class="row">
-    <h1>Listagem de categorias</h1>
+    <h1>Listagem de entrada de produtos</h1>
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
           <td >
-            <button class="btn btn-primary" (click)="inputService.showModalInsert()">Nova Categoria</button>
+            <button class="btn btn-primary" (click)="inputService.showModalInsert()">Registrar entrada</button>
           </td>
           <td colspan="4">
             <product-input-search-form (onSearch)="search($event)"></product-input-search-form>
