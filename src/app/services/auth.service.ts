@@ -62,4 +62,8 @@ export class AuthService {
       email: decodedPayload.email
     } : null;
   }
+
+  get AuthorizationHeader() {
+    return `Bearer ${this.getToken()}`;
+  }
 }

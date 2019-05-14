@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { ProductIdFieldService } from './product-id-field.service';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import fieldsOptions from './input-fields-options';
+import { Select2Component } from 'ng2-select2';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -13,9 +15,27 @@ export class ProductInputFormComponent implements OnInit {
   @Input()
   form: FormGroup;
 
-  constructor(private changeRef: ChangeDetectorRef) {}
+  data = [
+    {
+      id: '1', text: 'Laravel'
+    },
+    {
+      id: '2', text: 'Laravel'
+    }
+  ];
 
-  ngOnInit() {}
+  @ViewChild(Select2Component, {read: ElementRef})
+  select2Element: ElementRef;
+
+  constructor(
+    private changeRef: ChangeDetectorRef,
+    public productIdField: ProductIdFieldService
+    ) {
+    }
+
+  ngOnInit() {
+    this.productIdField.make(this.select2Element, this.form.get('product_id'));
+  }
 
   // usado para ativar mudanças no componente, repassando as mudanças do formulario,
   // para o form builder do elemento pai.

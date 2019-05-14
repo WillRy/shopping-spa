@@ -59,15 +59,16 @@ import { SortColumnComponent } from './components/commom/sort-column/sort-column
 import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
 import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
 import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
-import { IsInvalidDirective } from './directives/is-invalid.directive';
+import { IsInvalidDirective, IsInvalidControlDirective } from './directives/is-invalid.directive';
 import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 import { ProductFormComponent } from './components/pages/product/product-form/product-form.component';
 import { ProductInputListComponent } from './components/pages/product-input/product-input-list/product-input-list.component';
 import { ProductInputNewModalComponent } from './components/pages/product-input/product-input-new-modal/product-input-new-modal.component';
 import { ProductInputFormComponent } from './components/pages/product-input/product-input-form/product-input-form.component';
+// tslint:disable-next-line: max-line-length
 import { ProductInputSearchFormComponent } from './components/pages/product-input/product-input-search-form/product-input-search-form.component';
-
+import { Select2Module } from 'ng2-select2';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -107,6 +108,7 @@ function jwtFactory(authService: AuthService) {
     CategoryFormComponent,
     FieldErrorComponent,
     IsInvalidDirective,
+    IsInvalidControlDirective,
     ListErrorComponent,
     CardErrorComponent,
     ProductFormComponent,
@@ -128,7 +130,8 @@ function jwtFactory(authService: AuthService) {
         useFactory: jwtFactory,
         deps: [AuthService]
       }
-    })
+    }),
+    Select2Module
   ],
   providers: [
     {

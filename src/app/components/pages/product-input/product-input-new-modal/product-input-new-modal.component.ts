@@ -19,6 +19,7 @@ import {
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
+import fieldsOptions from '../product-input-form/input-fields-options';
 
 
 @Component({
@@ -42,20 +43,21 @@ export class ProductInputNewModalComponent implements OnInit {
 
   constructor(private inputHttp: ProductInputHttpService, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      amount: ['', [Validators.required]],
-      product_id: ['', [Validators.required]],
+      amount: ['', [Validators.required, Validators.min(fieldsOptions.amount.validationMessage.min)]],
+      product_id: [null, [Validators.required]],
     });
   }
 
   ngOnInit() {}
 
   submit() {
+    console.log(this.form.value);
     this.inputHttp.create(this.form.value)
       .subscribe(
         (input) => {
           this.form.reset({
             amount: '',
-            product_id: ''
+            product_id: null
           });
           this.onSuccess.emit(input);
           this.modal.hide();

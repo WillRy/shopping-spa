@@ -6,7 +6,7 @@ const fieldsOptions: FieldsOptions = {
     id: 'amount',
     label: 'Quantidade',
     validationMessage: {
-      minlength: 1
+      min: 1
     }
   },
   product_id: {
