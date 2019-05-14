@@ -69,6 +69,11 @@ import { ProductInputFormComponent } from './components/pages/product-input/prod
 // tslint:disable-next-line: max-line-length
 import { ProductInputSearchFormComponent } from './components/pages/product-input/product-input-search-form/product-input-search-form.component';
 import { Select2Module } from 'ng2-select2';
+import { ProductOutputListComponent } from './components/pages/product-output/product-output-list/product-output-list.component';
+// tslint:disable-next-line: max-line-length
+import { ProductOutputNewModalComponent } from './components/pages/product-output/product-output-new-modal/product-output-new-modal.component';
+import { ProductOutputFormComponent } from './components/pages/product-output/product-output-form/product-output-form.component';
+import { ProductOutputSearchFormComponent } from './components/pages/product-output/product-output-search-form/product-output-search-form.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -115,7 +120,11 @@ function jwtFactory(authService: AuthService) {
     ProductInputListComponent,
     ProductInputNewModalComponent,
     ProductInputFormComponent,
-    ProductInputSearchFormComponent
+    ProductInputSearchFormComponent,
+    ProductOutputListComponent,
+    ProductOutputNewModalComponent,
+    ProductOutputFormComponent,
+    ProductOutputSearchFormComponent
   ],
   imports: [
     BrowserModule,

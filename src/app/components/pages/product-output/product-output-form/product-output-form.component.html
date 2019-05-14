@@ -1,0 +1,11 @@
+<div class="form-group" [formGroup]="form">
+  <label [for]="fieldsOptions.amount.id">{{fieldsOptions.amount.label}}</label>
+  <input type="number" class="form-control" formControlName="amount" [id]="fieldsOptions.amount.id" isInvalid>
+  <field-error [field]="form.get('amount')" [label]="fieldsOptions.amount.label"
+    [messages]="fieldsOptions.amount.validationMessage"></field-error>
+</div>
+<div class="form-group">
+  <select2 [data]="productIdField.data" [options]="productIdField.options" name="product_id" [isInvalidControl]="form.get('product_id')" (valueChanged)="productIdField.updateFormControl($event.value)" class="form-control undo-form-control"></select2>
+  <field-error [field]="form.get('product_id')" [label]="fieldsOptions.product_id.label"
+  [messages]="fieldsOptions.product_id.validationMessage"></field-error>
+</div>

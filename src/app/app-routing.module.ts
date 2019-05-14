@@ -9,6 +9,7 @@ import { CategoryListComponent } from './components/pages/category/category-list
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductListComponent } from './components/pages/product/product-list/product-list.component';
 import { ProductInputListComponent } from './components/pages/product-input/product-input-list/product-input-list.component';
+import { ProductOutputListComponent } from './components/pages/product-output/product-output-list/product-output-list.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -37,6 +38,11 @@ const routes: Routes = [{
 {
   path: 'inputs/list',
   component: ProductInputListComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'outputs/list',
+  component: ProductOutputListComponent,
   canActivate: [AuthGuard]
 },
 {

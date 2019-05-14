@@ -52,3 +52,14 @@ export interface ProductInput {
         date: string
     };
 }
+export interface ProductOutput {
+    id?: number;
+    amount: number;
+    product: Product;
+    readonly created_at ?: {
+        date: string
+    };
+    readonly updated_at ?: {
+        date: string
+    };
+}
