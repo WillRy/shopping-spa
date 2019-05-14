@@ -1,0 +1,18 @@
+<form action="" (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <div modal-title>
+      Nova Entrada de Produtos
+    </div>
+    <div modal-body>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+
+      <product-input-form [form]="form"></product-input-form>
+    </div>
+    <div modal-footer>
+      <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Incluir</button>
+    </div>
+  </modal>
+</form>

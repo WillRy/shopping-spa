@@ -41,3 +41,14 @@ export interface ProductCategory {
     product: Product;
     categories: Category[];
 }
+export interface ProductInput {
+    id?: number;
+    amount: number;
+    product: Product;
+    readonly created_at ?: {
+        date: string
+    };
+    readonly updated_at ?: {
+        date: string
+    };
+}
