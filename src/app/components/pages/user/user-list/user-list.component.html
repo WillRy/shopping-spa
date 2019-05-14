@@ -1,6 +1,6 @@
 <main>
   <div class="row">
-    <h5>Listagem de usuários</h5>
+    <h1>Listagem de usuários</h1>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -13,7 +13,7 @@
             <th style="width: 5%">ID</th>
             <th style="width: 55%">Nome</th>
             <th style="width: 10%">Email</th>
-            
+
             <th style="width: 10%">Ações</th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
-            
+
             <td>
               <a href="javascript:void(0)" (click)="userEditService.showModalEdit(user.id)">
                 <i class="fas fa-edit"></i>
