@@ -12,10 +12,8 @@ import {
 import {
   Select2Component
 } from 'ng2-select2';
-import {
-  ProductIdFieldService
-} from '../../product-input/product-input-form/product-id-field.service';
 import fieldsOptions from './output-fields-options';
+import { ProductIdFieldService } from '../../product/select-products/product-id-field.service';
 
 
 @Component({
