@@ -12,7 +12,8 @@ import {
 import {
   HttpErrorResponse
 } from '@angular/common/http';
-import { User } from 'src/app/model';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import fieldsOptions from '../user-form/user-fields-options';
 
 
 @Component({
@@ -31,13 +32,16 @@ export class UserNewModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  user: User = {
-    name: '',
-    email: '',
-    password: ''
-  };
+  form: FormGroup;
+  errors = {};
 
-  constructor(private userHttpService: UserHttpService) {}
+  constructor(private userHttpService: UserHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      email: ['', [Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
   ngOnInit() {}
 
@@ -50,14 +54,21 @@ export class UserNewModalComponent implements OnInit {
   }
 
   submit() {
-    this.userHttpService.create(this.user).subscribe(
+    this.userHttpService.create(this.form.value).subscribe(
       (user) => {
         this.onSuccess.emit(user);
         this.modal.hide();
       },
-      (error) => {
-        this.onError.emit(error);
+      (responseError) => {
+        if (responseError.status === 422) {
+          this.errors = responseError.error.errors;
+        }
+        this.onError.emit(responseError);
       });
     return false;
+  }
+
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
   }
 }

@@ -4,25 +4,11 @@
       <h5>Editar usuário</h5>
     </div>
     <div modal-body>
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="user.name" id="name">
-      </div>
-     
-      <div class="form-group">
-        <label for="email">Email</label>
-        <textarea class="form-control" name="email" [(ngModel)]="user.email" id="email"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="number" class="form-control" name="password" [(ngModel)]="user.password" id="password">
-      </div>
-
+      <user-form [form]="form"></user-form>
     </div>
     <div modal-footer>
       <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary">Editar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Editar</button>
     </div>
   </modal>
 </form>

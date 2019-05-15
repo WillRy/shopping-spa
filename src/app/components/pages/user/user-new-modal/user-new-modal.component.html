@@ -1,28 +1,18 @@
-<form (submit)="submit()" >
+<form (submit)="submit()">
   <modal (onHide)="hideModal($event)">
     <div modal-title>
       <h5>Novo usuário</h5>
     </div>
     <div modal-body>
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="user.name" id="name">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <textarea class="form-control" name="email" [(ngModel)]="user.email" id="email"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="user.password" id="password">
-      </div>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+      <user-form [form]="form"></user-form>
 
     </div>
     <div modal-footer>
       <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary">Incluir</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Incluir</button>
     </div>
   </modal>
 </form>

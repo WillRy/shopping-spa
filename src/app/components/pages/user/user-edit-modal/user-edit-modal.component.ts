@@ -12,8 +12,10 @@ import {
 import {
   ModalComponent
 } from 'src/app/components/bootstrap/modal/modal.component';
-import { User } from 'src/app/model';
 import { UserHttpService } from 'src/app/services/http/user-http.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import fieldsOptions from '../user-form/user-fields-options';
+
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -30,15 +32,18 @@ export class UserEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
-  user: User = {
-    name: '',
-    email: '',
-    password: ''
-  };
+  form: FormGroup;
+  errors = {};
 
   _userId: number;
 
-  constructor(private userHttp: UserHttpService) {}
+  constructor(private userHttp: UserHttpService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      email: ['', [Validators.email]],
+      password: ['']
+    });
+  }
 
   ngOnInit() {}
 
@@ -46,18 +51,21 @@ export class UserEditModalComponent implements OnInit {
   set userId(value) {
     this._userId = value;
     if (this._userId) {
-      this.userHttp.get(this._userId).subscribe(response => this.user = response);
+      this.userHttp.get(this._userId).subscribe(response => this.form.patchValue(response));
     }
   }
 
   submit() {
-    this.userHttp.update(this._userId, this.user).subscribe(
+    this.userHttp.update(this._userId, this.form.value).subscribe(
       (user) => {
         this.onSuccess.emit(user);
         this.modal.hide();
       },
-      (error) => {
-        this.onError.emit(error);
+      (responseError) => {
+        if (responseError.status === 422) {
+          this.errors = responseError.error.errors;
+        }
+        this.onError.emit(responseError);
       });
   }
 
@@ -67,4 +75,9 @@ export class UserEditModalComponent implements OnInit {
   hideModal($event) {
     this.modal.hide();
   }
+
+  showErrors() {
+    return Object.keys(this.errors).length !== 0;
+  }
+
 }
