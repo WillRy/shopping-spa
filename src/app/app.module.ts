@@ -77,6 +77,7 @@ import { ProductOutputFormComponent } from './components/pages/product-output/pr
 import { ProductOutputSearchFormComponent } from './components/pages/product-output/product-output-search-form/product-output-search-form.component';
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
+import { ProductPhotoUploadComponent } from './components/pages/product-photo/product-photo-upload/product-photo-upload.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -129,7 +130,8 @@ function jwtFactory(authService: AuthService) {
     ProductOutputFormComponent,
     ProductOutputSearchFormComponent,
     UserFormComponent,
-    ProductPhotoManagerComponent
+    ProductPhotoManagerComponent,
+    ProductPhotoUploadComponent
   ],
   imports: [
     BrowserModule,
