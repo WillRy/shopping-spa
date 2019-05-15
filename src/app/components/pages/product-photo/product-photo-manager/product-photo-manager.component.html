@@ -4,10 +4,9 @@
     <product-photo-upload (onSuccess)="onInsertSuccess($event)"></product-photo-upload>
   </div>
   <div class="col-md-12">
-    <a data-fancybox="gallery" [href]="photo.photo_url" *ngFor="let photo of photos" class="col-md-3">
-        <img [src]="photo.photo_url" alt="" [id]="'photo-'+photo.id" class="img-fluid mb-3 box">
+    <a data-fancybox="gallery" [href]="photo.photo_url" *ngFor="let photo of photos" class="">
+        <img [src]="photo.photo_url" alt="" [id]="'photo-'+photo.id" class="img-fluid col-md-6 mb-3 box">
     </a>
-
   </div>
 </div>
 <product-photo-edit-modal (onSuccess)="onEditSuccess($event)" [photoId]="photoIdToEdit"></product-photo-edit-modal>
