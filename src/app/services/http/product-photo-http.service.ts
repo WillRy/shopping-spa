@@ -40,6 +40,10 @@ export class ProductPhotoHttpService {
     );
   }
 
+  destroy(productId: number, photoId: number): Observable<any> {
+    return this.http.delete(this.getBaseUrl(productId, photoId));
+  }
+
   private getBaseUrl(productId: number, photoId: number = null): string {
     let baseUrl = `${this.baseAPI}/products/${productId}/photos`;
     if (photoId) {

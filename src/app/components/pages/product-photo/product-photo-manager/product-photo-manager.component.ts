@@ -19,6 +19,9 @@ import {
 import {
   NotifyMessageService
 } from 'src/app/services/notify-message.service';
+import {
+  ProductPhotoDeleteModalComponent
+} from '../product-photo-delete-modal/product-photo-delete-modal.component';
 
 declare const $;
 
@@ -33,9 +36,13 @@ export class ProductPhotoManagerComponent implements OnInit {
   product: Product = null;
   productId: number = null;
   photoIdToEdit: number = null;
+  photoIdToDelete: number = null;
 
   @ViewChild(ProductPhotoEditModalComponent)
   editModal: ProductPhotoEditModalComponent;
+
+  @ViewChild(ProductPhotoDeleteModalComponent)
+  deleteModal: ProductPhotoDeleteModalComponent;
 
   constructor(
     private productPhotoHttp: ProductPhotoHttpService,
@@ -62,11 +69,19 @@ export class ProductPhotoManagerComponent implements OnInit {
     $.fancybox.defaults.btnTpl.edit = `<a class="fancybox-button" data-fancybox-edit
     title="Substituir" href="javascript:void(0)" style="text-align:center">
     <i class="fas fa-edit"></i></a>`;
-    $.fancybox.defaults.buttons = ['download', 'edit', 'close'];
+    $.fancybox.defaults.buttons = ['download', 'edit', 'close', 'delete'];
     $('body').on('click', '[data-fancybox-edit]', (e) => {
       this.photoIdToEdit = this.getPhotoIdfromSlideShow();
       console.log(this.photoIdToEdit);
       this.editModal.showModal();
+    });
+
+    $.fancybox.defaults.btnTpl.delete = `<a class="fancybox-button" data-fancybox-delete
+    title="Deletar" href="javascript:void(0)" style="text-align:center">
+    <i class="fas fa-trash"></i></a>`;
+    $('body').on('click', '[data-fancybox-delete]', (e) => {
+      this.photoIdToDelete = this.getPhotoIdfromSlideShow();
+      this.deleteModal.showModal();
     });
   }
 
@@ -79,19 +94,31 @@ export class ProductPhotoManagerComponent implements OnInit {
   onInsertSuccess(data: {
     photos: ProductPhoto[]
   }) {
-
     this.photos.push(...data.photos);
     this.notifyMessage.success('Fotos(s) cadastradas com sucesso');
   }
 
   onEditSuccess(data: ProductPhoto) {
-    $.fancybox.getInstance().close();
     this.editModal.hideModal();
+    $.fancybox.getInstance().close();
+
     const index = this.photos.findIndex((photo: ProductPhoto) => {
-// tslint:disable-next-line: triple-equals
+      // tslint:disable-next-line: triple-equals
       return photo.id == this.photoIdToEdit;
     });
     this.photos[index] = data;
     this.notifyMessage.success('Foto substituida com sucesso');
+  }
+
+  onDeleteSuccess(data: number) {
+    this.deleteModal.hideModal();
+    $.fancybox.getInstance().close();
+
+    const index = this.photos.findIndex((photo: ProductPhoto) => {
+      // tslint:disable-next-line: triple-equals
+      return photo.id == this.photoIdToDelete;
+    });
+    this.photos.splice(index, 1);
+    this.notifyMessage.success('Foto deletada com sucesso');
   }
 }

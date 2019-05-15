@@ -50,6 +50,9 @@ export class ProductPhotoUploadComponent implements OnInit {
     this.productPhotoHttp.create(this.productId, files).subscribe(
       (data) => {
       this.onSuccess.emit(data);
+      // clear photo field
+      const field: HTMLInputElement = document.querySelector('#photo');
+      field.value = '';
       },
       (responseError) => {
         if (responseError.status === 422) {
