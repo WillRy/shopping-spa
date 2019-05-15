@@ -1,3 +1,4 @@
+import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
 import {
   NgModule
 } from '@angular/core';
@@ -43,6 +44,11 @@ const routes: Routes = [{
 {
   path: 'outputs/list',
   component: ProductOutputListComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'products/:product/photos/manager',
+  component: ProductPhotoManagerComponent,
   canActivate: [AuthGuard]
 },
 {
