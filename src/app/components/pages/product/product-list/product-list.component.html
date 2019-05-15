@@ -19,7 +19,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products | paginate: {itemsPerPage:pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
+          <tr
+            *ngFor="let product of products | paginate: {itemsPerPage:pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td>{{product.price | numberFormatBr}}</td>
@@ -34,16 +35,21 @@
                 <i class="fas fa-trash-alt"></i>
               </a>
               |
-              <a target="_blank" [routerLink]="['/products',product.id,'categories','list']">Categorias</a>
-
+              <a  [routerLink]="['/products',product.id,'categories','list']">Categorias</a>
+              |
+              <a  [routerLink]="['/products',product.id,'photos','manager']">Fotos</a>
             </td>
           </tr>
         </tbody>
       </table>
-      <pagination-controls nextLabel="próximo" previousLabel="anterior" (pageChange)="pageChanged($event)"></pagination-controls>
+      <pagination-controls nextLabel="próximo" previousLabel="anterior" (pageChange)="pageChanged($event)">
+      </pagination-controls>
     </div>
   </div>
 </main>
-<product-new-modal (onSuccess)="productInsertService.onInsertSuccess($event)" (onError)="productInsertService.onInsertError($event)"></product-new-modal>
-<product-edit-modal [productId]="productId" (onSuccess)="productEditService.onEditSuccess($event)" (onError)="productEditService.onEditError($event)"></product-edit-modal>
-<product-delete-modal [productId]="productId" (onSuccess)="productDeleteService.onDeleteSuccess($event)" (onError)="productDeleteService.onDeleteError($event)"></product-delete-modal>
+<product-new-modal (onSuccess)="productInsertService.onInsertSuccess($event)"
+  (onError)="productInsertService.onInsertError($event)"></product-new-modal>
+<product-edit-modal [productId]="productId" (onSuccess)="productEditService.onEditSuccess($event)"
+  (onError)="productEditService.onEditError($event)"></product-edit-modal>
+<product-delete-modal [productId]="productId" (onSuccess)="productDeleteService.onDeleteSuccess($event)"
+  (onError)="productDeleteService.onDeleteError($event)"></product-delete-modal>
