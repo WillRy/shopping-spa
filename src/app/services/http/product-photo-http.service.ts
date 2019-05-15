@@ -29,10 +29,21 @@ export class ProductPhotoHttpService {
     return this.http.post<any>(this.getBaseUrl(productId), formData);
 
   }
-  private getBaseUrl(productId: number, categoryId: number = null): string {
+
+  update(productId: number, photoId: number, file: File): Observable<ProductPhoto> {
+    const formData =  new FormData();
+    formData.append('photo', file);
+    formData.append('_method', 'PUT');
+    return this.http.post<any>(this.getBaseUrl(productId, photoId), formData)
+    .pipe(
+      map(response => response.data)
+    );
+  }
+
+  private getBaseUrl(productId: number, photoId: number = null): string {
     let baseUrl = `${this.baseAPI}/products/${productId}/photos`;
-    if (categoryId) {
-      baseUrl += `/${categoryId}`;
+    if (photoId) {
+      baseUrl += `/${photoId}`;
     }
     return baseUrl;
   }
