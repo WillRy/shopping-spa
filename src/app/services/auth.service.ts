@@ -59,7 +59,8 @@ export class AuthService {
     this.me = decodedPayload ? {
       id: decodedPayload.sub,
       name: decodedPayload.name,
-      email: decodedPayload.email
+      email: decodedPayload.email,
+      profile: decodedPayload.profile
     } : null;
   }
 
