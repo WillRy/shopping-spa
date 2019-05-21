@@ -41,6 +41,7 @@ export interface User {
 export interface UserProfile {
     photo_url: string;
     phone_number: string;
+    has_photo: boolean;
 }
 export interface ProductCategory {
     product: Product;
