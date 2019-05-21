@@ -1,4 +1,7 @@
 import {
+  FirebaseAuthService
+} from './../../../services/firebase-auth.service';
+import {
   AuthService
 } from './../../../services/auth.service';
 import {
@@ -11,35 +14,50 @@ import {
 } from '@angular/forms';
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
-import fieldsOptions from '../category/category-form/category-fields-options';
 import {
   UserProfileHttpService
 } from 'src/app/services/http/user-profile-http.service';
+import {
+  PhoneNumberAuthModalComponent
+} from '../../commom/phone-number-auth-modal/phone-number-auth-modal.component';
+import fieldsOptions from './user-profile-field-options';
 
 @Component({
-  selector: 'app-user-profile',
+// tslint:disable-next-line: component-selector
+  selector: 'user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
 
+  @ViewChild(PhoneNumberAuthModalComponent)
+  phoneNumberAuthModal: PhoneNumberAuthModalComponent;
+
   errors = {};
   form: FormGroup;
   has_photo: boolean;
+
+
   constructor(
     private userProfileHttp: UserProfileHttpService,
     private formBuilder: FormBuilder,
     private notifyMessage: NotifyMessageService,
-    public authService: AuthService
+    public authService: AuthService,
+    private firebaseAuth: FirebaseAuthService
   ) {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.maxLength(255)]],
-      email: ['', [Validators.email, Validators.maxLength(255)]],
-      password: ['', [Validators.minLength(6), Validators.maxLength(16)]],
+      name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
+      email: ['', [Validators.email, Validators.maxLength(fieldsOptions.email.validationMessage.maxlength)]],
+      password: ['', [Validators.minLength(
+        fieldsOptions.password.validationMessage.minlength),
+        Validators.maxLength(fieldsOptions.password.validationMessage.maxlength)]
+      ],
       phone_number: null,
-      photo: ''
+      photo: '',
+      token: null
     });
     this.form.patchValue(authService.me);
     this.form.get('phone_number').setValue(this.authService.me.profile.phone_number);
@@ -53,7 +71,8 @@ export class UserProfileComponent implements OnInit {
     delete data.phone_number;
     this.userProfileHttp.update(data).subscribe(
       (user) => {
-        this.form.get('photo').setValue(false);
+        this.form.get('photo').setValue('');
+        this.form.get('token').setValue(null);
         this.setHasPhoto();
         this.notifyMessage.success('Perfil atualizado com sucesso');
       },
@@ -83,5 +102,22 @@ export class UserProfileComponent implements OnInit {
   removePhoto() {
     this.form.get('photo').setValue(null);
     this.has_photo = false;
+  }
+
+  openPhoneNumberAuthModal() {
+    this.phoneNumberAuthModal.showModal();
+  }
+
+  onPhoneNumberVerification($event) {
+    this.firebaseAuth.getUser().then(user => {
+      this.form.get('phone_number').setValue(user.phoneNumber);
+    });
+    this.firebaseAuth.getToken().then(token => {
+      this.form.get('token').setValue(token);
+    });
+  }
+
+  get fieldsOptions(): any {
+    return fieldsOptions;
   }
 }
