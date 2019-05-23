@@ -82,6 +82,7 @@ import { ProductPhotoEditModalComponent } from './components/pages/product-photo
 import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
+import { ChatGroupListComponent } from './components/pages/chat-group-list/chat-group-list.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -139,7 +140,8 @@ function jwtFactory(authService: AuthService) {
     ProductPhotoEditModalComponent,
     ProductPhotoDeleteModalComponent,
     UserProfileComponent,
-    PhoneNumberAuthModalComponent
+    PhoneNumberAuthModalComponent,
+    ChatGroupListComponent
   ],
   imports: [
     BrowserModule,
