@@ -1,0 +1,18 @@
+<form action="" (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <div modal-title>
+      Deletar grupo de chat - {{chatGroup?.name}}
+    </div>
+    <div modal-body>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+      <p>Confirme se deseja deletar o grupo</p>
+
+    </div>
+    <div modal-footer>
+      <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </div>
+  </modal>
+</form>

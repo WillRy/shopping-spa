@@ -21,6 +21,8 @@ import {
 import {
   ChatGroupEditService
 } from './chat-group-edit-service';
+import { ChatGroupDeleteModalComponent } from '../chat-group-delete-modal/chat-group-delete-modal.component';
+import { ChatGroupDeleteService } from './chat-group-delete-service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -51,13 +53,18 @@ export class ChatGroupListComponent implements OnInit {
   @ViewChild(ChatGroupEditModalComponent)
   chatGroupEditModal: ChatGroupEditModalComponent;
 
+  @ViewChild(ChatGroupDeleteModalComponent)
+  chatGroupDeleteModal: ChatGroupDeleteModalComponent;
+
   constructor(
     private chatGroupHttp: ChatGroupHttpService,
     public chatGroupInsertService: ChatGroupInsertService,
-    public chatGroupEditService: ChatGroupEditService
+    public chatGroupEditService: ChatGroupEditService,
+    public chatGroupDeleteService: ChatGroupDeleteService,
   ) {
     this.chatGroupInsertService.chatGroupListComponent = this;
     this.chatGroupEditService.chatGroupListComponent = this;
+    this.chatGroupDeleteService.chatGroupListComponent = this;
   }
 
   ngOnInit() {
