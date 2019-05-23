@@ -85,6 +85,7 @@ import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-
 import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
 import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
 import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
+import { ChatGroupEditModalComponent } from './components/pages/chat-group/chat-group-edit-modal/chat-group-edit-modal.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -145,7 +146,8 @@ function jwtFactory(authService: AuthService) {
     PhoneNumberAuthModalComponent,
     ChatGroupListComponent,
     ChatGroupNewModalComponent,
-    ChatGroupFormComponent
+    ChatGroupFormComponent,
+    ChatGroupEditModalComponent
   ],
   imports: [
     BrowserModule,

@@ -49,8 +49,8 @@ import {
 
     update(id: number, data: ChatGroup): Observable < ChatGroup > {
       const formData = this.formDataToSend(data);
-      formData.append('_method', 'PATCH');
-      return this.http.put < {data: ChatGroup} > (`${this.baseUrl}/${id}`, formData).pipe(
+      formData.append('_method', 'PUT');
+      return this.http.post < {data: ChatGroup} > (`${this.baseUrl}/${id}`, formData).pipe(
         map(response => response.data)
       );
     }
@@ -59,10 +59,10 @@ import {
       return this.http.delete(`${this.baseUrl}/${id}`);
     }
 
-    private formDataToSend(data): FormData {
+    private formDataToSend(data: ChatGroup): FormData {
       const formData = new FormData();
       formData.append('name', data.name);
-      if (data.photo instanceof File) {
+      if (data.photo){
         formData.append('photo', data.photo);
       }
       return formData;

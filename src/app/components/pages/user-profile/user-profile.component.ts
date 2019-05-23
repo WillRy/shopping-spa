@@ -56,7 +56,7 @@ export class UserProfileComponent implements OnInit {
         Validators.maxLength(fieldsOptions.password.validationMessage.maxlength)]
       ],
       phone_number: null,
-      photo: '',
+      photo: false,
       token: null
     });
     this.form.patchValue(authService.me);
@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
     delete data.phone_number;
     this.userProfileHttp.update(data).subscribe(
       (user) => {
-        this.form.get('photo').setValue('');
+        this.form.get('photo').setValue(false);
         this.form.get('token').setValue(null);
         this.setHasPhoto();
         this.notifyMessage.success('Perfil atualizado com sucesso');

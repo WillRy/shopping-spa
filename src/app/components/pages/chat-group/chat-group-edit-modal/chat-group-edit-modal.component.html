@@ -1,0 +1,24 @@
+<form action="" (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <div modal-title>
+      Editar Grupo de Chat
+    </div>
+    <div modal-body>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+
+      <chat-group-form [form]="form"></chat-group-form>
+      <hr>
+      <div class="box-photo" *ngIf="chatGroup?.photo_url">
+        <h6>Foto atual:</h6>
+        <img [src]="chatGroup?.photo_url" alt="" >
+      </div>
+
+    </div>
+    <div modal-footer>
+      <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Editar</button>
+    </div>
+  </modal>
+</form>

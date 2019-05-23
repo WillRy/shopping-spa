@@ -40,7 +40,7 @@
       </div>
       <div class="form-group">
         <label for="photo">Foto de perfil {{has_photo}}</label>
-        <input class="form-control-file" type="file" name="photo" id="photo" formControlName="photo"
+        <input class="form-control-file" type="file" name="photo" id="photo"
           (change)="onChoosePhoto($event.target.files)">
         <button class="btn btn-danger mt-3" [hidden]="!has_photo" (click)="removePhoto()">Remover foto do
           perfil</button>

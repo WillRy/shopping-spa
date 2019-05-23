@@ -1,6 +1,6 @@
 import {
   ChatGroupInsertService
-} from './chat-group-service';
+} from './chat-group-insert-service';
 import {
   ChatGroupNewModalComponent
 } from './../chat-group-new-modal/chat-group-new-modal.component';
@@ -15,6 +15,12 @@ import {
 import {
   ChatGroupHttpService
 } from 'src/app/services/http/chat-group-http-service';
+import {
+  ChatGroupEditModalComponent
+} from '../chat-group-edit-modal/chat-group-edit-modal.component';
+import {
+  ChatGroupEditService
+} from './chat-group-edit-service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -42,11 +48,16 @@ export class ChatGroupListComponent implements OnInit {
   @ViewChild(ChatGroupNewModalComponent)
   chatGroupNewModal: ChatGroupNewModalComponent;
 
+  @ViewChild(ChatGroupEditModalComponent)
+  chatGroupEditModal: ChatGroupEditModalComponent;
+
   constructor(
     private chatGroupHttp: ChatGroupHttpService,
-    public chatGroupInsertService: ChatGroupInsertService
+    public chatGroupInsertService: ChatGroupInsertService,
+    public chatGroupEditService: ChatGroupEditService
   ) {
     this.chatGroupInsertService.chatGroupListComponent = this;
+    this.chatGroupEditService.chatGroupListComponent = this;
   }
 
   ngOnInit() {

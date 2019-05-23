@@ -6,7 +6,7 @@
 
     <div class="form-group" [formGroup]="form">
         <label for="photo">Foto do Grupo</label>
-        <input class="form-control-file" type="file" name="photo" id="photo" formControlName="photo"
+        <input class="form-control-file" type="file" name="photo" id="photo"
             (change)="onChoosePhoto($event.target.files)">
     </div>
 </div>
