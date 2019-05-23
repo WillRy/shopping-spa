@@ -6,7 +6,7 @@
       <thead>
         <tr>
           <td >
-            <button class="btn btn-primary" >Novo chat</button>
+            <button class="btn btn-primary" (click)="chatGroupInsertService.showModalInsert()">Novo chat</button>
           </td>
 
         </tr>
@@ -40,4 +40,4 @@
     <pagination-controls nextLabel="próximo" previousLabel="anterior" (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </main>
-
+<chat-group-new-modal (onSuccess)="chatGroupInsertService.onInsertSuccess($event)" (onError)="chatGroupInsertService.onInsertError($event)"></chat-group-new-modal>

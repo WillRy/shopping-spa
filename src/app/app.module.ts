@@ -82,7 +82,9 @@ import { ProductPhotoEditModalComponent } from './components/pages/product-photo
 import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
-import { ChatGroupListComponent } from './components/pages/chat-group-list/chat-group-list.component';
+import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
+import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
+import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -141,7 +143,9 @@ function jwtFactory(authService: AuthService) {
     ProductPhotoDeleteModalComponent,
     UserProfileComponent,
     PhoneNumberAuthModalComponent,
-    ChatGroupListComponent
+    ChatGroupListComponent,
+    ChatGroupNewModalComponent,
+    ChatGroupFormComponent
   ],
   imports: [
     BrowserModule,

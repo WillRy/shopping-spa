@@ -41,13 +41,16 @@ import {
     }
 
     create(data: ChatGroup): Observable < ChatGroup >  {
-      return this.http.post < {data: ChatGroup} > (this.baseUrl, data).pipe(
+      const formData = this.formDataToSend(data);
+      return this.http.post < {data: ChatGroup} > (this.baseUrl, formData).pipe(
         map(response => response.data)
       );
     }
 
     update(id: number, data: ChatGroup): Observable < ChatGroup > {
-      return this.http.put < {data: ChatGroup} > (`${this.baseUrl}/${id}`, data).pipe(
+      const formData = this.formDataToSend(data);
+      formData.append('_method', 'PATCH');
+      return this.http.put < {data: ChatGroup} > (`${this.baseUrl}/${id}`, formData).pipe(
         map(response => response.data)
       );
     }
@@ -56,5 +59,13 @@ import {
       return this.http.delete(`${this.baseUrl}/${id}`);
     }
 
+    private formDataToSend(data): FormData {
+      const formData = new FormData();
+      formData.append('name', data.name);
+      if (data.photo instanceof File) {
+        formData.append('photo', data.photo);
+      }
+      return formData;
+    }
 
   }
