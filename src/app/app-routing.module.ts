@@ -1,3 +1,4 @@
+import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
 import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
 import {
   NgModule
@@ -55,6 +56,11 @@ const routes: Routes = [{
 {
   path: 'products/:product/photos/manager',
   component: ProductPhotoManagerComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'chat_groups/list',
+  component: ChatGroupListComponent,
   canActivate: [AuthGuard]
 },
 {

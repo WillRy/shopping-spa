@@ -1,0 +1,12 @@
+<div class="form-group" [formGroup]="form">
+    <label [for]="fieldsOptions.name.id">{{fieldsOptions.name.label}}</label>
+    <input type="text" class="form-control" formControlName="name" [id]="fieldsOptions.name.id" isInvalid>
+    <field-error [field]="form.get('name')" [label]="fieldsOptions.name.label"
+        [messages]="fieldsOptions.name.validationMessage"></field-error>
+
+    <div class="form-group" [formGroup]="form">
+        <label for="photo">Foto do Grupo</label>
+        <input class="form-control-file" type="file" name="photo" id="photo"
+            (change)="onChoosePhoto($event.target.files)">
+    </div>
+</div>
