@@ -42,7 +42,7 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
   }
 
   private setNewTokenIfResponseValid(event: HttpEvent < any > ) {
-    if (event instanceof HttpResponse) {
+    if (event instanceof HttpResponseBase) {
       const authorizationHeader = event.headers.get('Authorization');
       if (authorizationHeader) {
         const token = authorizationHeader.split(' ')[1];
@@ -52,7 +52,7 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
   }
 
   private redirectToLoginIfUnauthenticated(eventError: HttpEvent < any > ) {
-    if (eventError instanceof HttpResponseBase && eventError.status === 401) {
+    if (eventError instanceof HttpErrorResponse && eventError.status === 401) {
       this.authService.setToken(null);
       window.location.href = 'login';
     }
