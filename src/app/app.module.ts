@@ -18,24 +18,6 @@ import {
   HttpClientModule, HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import {
-  CategoryListComponent
-} from './components/pages/category/category-list/category-list.component';
-import {
-  AlertErrorComponent
-} from './components/bootstrap/alert-error/alert-error.component';
-import {
-  ModalComponent
-} from './components/bootstrap/modal/modal.component';
-import {
-  CategoryNewModalComponent
-} from './components/pages/category/category-new-modal/category-new-modal.component';
-import {
-  CategoryEditModalComponent
-} from './components/pages/category/category-edit-modal/category-edit-modal.component';
-import {
-  CategoryDeleteModalComponent
-} from './components/pages/category/category-delete-modal/category-delete-modal.component';
-import {
   NgxPaginationModule
 } from 'ngx-pagination';
 import { ProductListComponent } from './components/pages/product/product-list/product-list.component';
@@ -52,16 +34,8 @@ import { ProductCategoryNewComponent } from './components/pages/product-category
 // tslint:disable-next-line: max-line-length
 import { ProductCategoryDeleteModalComponent } from './components/pages/product-category/product-category-delete-modal/product-category-delete-modal.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
-import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
-import { SortColumnComponent } from './components/commom/sort-column/sort-column.component';
-import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
-import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
-import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
-import { IsInvalidDirective, IsInvalidControlDirective } from './directives/is-invalid.directive';
-import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
-import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
 import { ProductFormComponent } from './components/pages/product/product-form/product-form.component';
 import { ProductInputListComponent } from './components/pages/product-input/product-input-list/product-input-list.component';
 import { ProductInputNewModalComponent } from './components/pages/product-input/product-input-new-modal/product-input-new-modal.component';
@@ -78,7 +52,9 @@ import { ProductOutputSearchFormComponent } from './components/pages/product-out
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
 import { ProductPhotoUploadComponent } from './components/pages/product-photo/product-photo-upload/product-photo-upload.component';
+// tslint:disable-next-line: max-line-length
 import { ProductPhotoEditModalComponent } from './components/pages/product-photo/product-photo-edit-modal/product-photo-edit-modal.component';
+// tslint:disable-next-line: max-line-length
 import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
@@ -87,6 +63,7 @@ import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-g
 import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
 import { ChatGroupEditModalComponent } from './components/pages/chat-group/chat-group-edit-modal/chat-group-edit-modal.component';
 import { ChatGroupDeleteModalComponent } from './components/pages/chat-group/chat-group-delete-modal/chat-group-delete-modal.component';
+import { SharedModule } from './shared.module';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -102,12 +79,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    CategoryListComponent,
-    AlertErrorComponent,
-    ModalComponent,
-    CategoryNewModalComponent,
-    CategoryEditModalComponent,
-    CategoryDeleteModalComponent,
     ProductListComponent,
     ProductNewModalComponent,
     ProductEditModalComponent,
@@ -120,15 +91,6 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     ProductCategoryDeleteModalComponent,
-    NavbarComponent,
-    SortColumnComponent,
-    CategorySearchFormComponent,
-    CategoryFormComponent,
-    FieldErrorComponent,
-    IsInvalidDirective,
-    IsInvalidControlDirective,
-    ListErrorComponent,
-    CardErrorComponent,
     ProductFormComponent,
     ProductInputListComponent,
     ProductInputNewModalComponent,
@@ -153,6 +115,7 @@ function jwtFactory(authService: AuthService) {
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -165,7 +128,7 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     }),
-    Select2Module
+    Select2Module,
   ],
   providers: [
     {
