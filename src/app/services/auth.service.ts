@@ -33,6 +33,7 @@ export class AuthService {
   }
 
   setToken(token: string) {
+    console.log('novo token');
     this.setUserFromToken(token);
     token ? window.localStorage.setItem(TOKEN_KEY, token) : window.localStorage.removeItem(TOKEN_KEY);
   }

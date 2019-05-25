@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ListErrorComponent,
     CardErrorComponent,
     AlertErrorComponent,
+    NumberFormatBrPipe
   ],
   exports: [
     ModalComponent,
@@ -39,7 +41,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     IsInvalidControlDirective,
     ListErrorComponent,
     CardErrorComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    NumberFormatBrPipe
   ],
   providers: [
     AuthGuard

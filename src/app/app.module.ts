@@ -20,11 +20,7 @@ import {
 import {
   NgxPaginationModule
 } from 'ngx-pagination';
-import { ProductListComponent } from './components/pages/product/product-list/product-list.component';
-import { ProductNewModalComponent } from './components/pages/product/product-new-modal/product-new-modal.component';
-import { ProductEditModalComponent } from './components/pages/product/product-edit-modal/product-edit-modal.component';
-import { ProductDeleteModalComponent } from './components/pages/product/product-delete-modal/product-delete-modal.component';
-import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+
 import { UserListComponent } from './components/pages/user/user-list/user-list.component';
 import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
 import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
@@ -36,7 +32,6 @@ import { ProductCategoryDeleteModalComponent } from './components/pages/product-
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
-import { ProductFormComponent } from './components/pages/product/product-form/product-form.component';
 import { ProductInputListComponent } from './components/pages/product-input/product-input-list/product-input-list.component';
 import { ProductInputNewModalComponent } from './components/pages/product-input/product-input-new-modal/product-input-new-modal.component';
 import { ProductInputFormComponent } from './components/pages/product-input/product-input-form/product-input-form.component';
@@ -79,11 +74,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductListComponent,
-    ProductNewModalComponent,
-    ProductEditModalComponent,
-    ProductDeleteModalComponent,
-    NumberFormatBrPipe,
     UserListComponent,
     UserNewModalComponent,
     UserEditModalComponent,
@@ -91,7 +81,6 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     ProductCategoryDeleteModalComponent,
-    ProductFormComponent,
     ProductInputListComponent,
     ProductInputNewModalComponent,
     ProductInputFormComponent,
