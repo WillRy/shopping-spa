@@ -58,8 +58,8 @@ const routes: Routes = [{
     canActivate: [AuthGuard]
   },
   {
-    path: 'products/:product/categories/list',
-    component: ProductCategoryListComponent,
+    path: 'products',
+    loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule',
     canActivate: [AuthGuard]
   },
   {
