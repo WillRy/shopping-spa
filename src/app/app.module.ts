@@ -41,7 +41,6 @@ import { ProductOutputNewModalComponent } from './components/pages/product-outpu
 import { ProductOutputFormComponent } from './components/pages/product-output/product-output-form/product-output-form.component';
 // tslint:disable-next-line: max-line-length
 import { ProductOutputSearchFormComponent } from './components/pages/product-output/product-output-search-form/product-output-search-form.component';
-import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
 import { ProductPhotoUploadComponent } from './components/pages/product-photo/product-photo-upload/product-photo-upload.component';
 // tslint:disable-next-line: max-line-length
@@ -71,10 +70,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    UserListComponent,
-    UserNewModalComponent,
-    UserEditModalComponent,
-    UserDeleteModalComponent,
     ProductInputListComponent,
     ProductInputNewModalComponent,
     ProductInputFormComponent,
@@ -83,7 +78,6 @@ function jwtFactory(authService: AuthService) {
     ProductOutputNewModalComponent,
     ProductOutputFormComponent,
     ProductOutputSearchFormComponent,
-    UserFormComponent,
     ProductPhotoManagerComponent,
     ProductPhotoUploadComponent,
     ProductPhotoEditModalComponent,

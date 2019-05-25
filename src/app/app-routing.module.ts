@@ -43,8 +43,8 @@ const routes: Routes = [{
     component: LoginComponent
   },
   {
-    path: 'users/list',
-    component: UserListComponent,
+    path: 'users',
+    loadChildren: './components/pages/user/user.module#UserModule',
     canActivate: [AuthGuard]
   },
   {
