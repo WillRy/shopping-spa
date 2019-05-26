@@ -25,11 +25,6 @@ import {
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
-import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
-import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
-import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
-import { ChatGroupEditModalComponent } from './components/pages/chat-group/chat-group-edit-modal/chat-group-edit-modal.component';
-import { ChatGroupDeleteModalComponent } from './components/pages/chat-group/chat-group-delete-modal/chat-group-delete-modal.component';
 import { SharedModule } from './shared.module';
 
 function jwtFactory(authService: AuthService) {
@@ -46,11 +41,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    ChatGroupListComponent,
-    ChatGroupNewModalComponent,
-    ChatGroupFormComponent,
-    ChatGroupEditModalComponent,
-    ChatGroupDeleteModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,4 @@
 import {
-  ChatGroupListComponent
-} from './components/pages/chat-group/chat-group-list/chat-group-list.component';
-import {
-  ProductPhotoManagerComponent
-} from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
-import {
   NgModule
 } from '@angular/core';
 import {
@@ -69,8 +63,8 @@ const routes: Routes = [{
   //   canActivate: [AuthGuard]
   // },
   {
-    path: 'chat_groups/list',
-    component: ChatGroupListComponent,
+    path: 'chat_groups',
+    loadChildren: './components/pages/chat-group/chat-group.module#ChatGroupModule',
     canActivate: [AuthGuard]
   },
   {
