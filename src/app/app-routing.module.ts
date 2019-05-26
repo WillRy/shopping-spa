@@ -15,18 +15,8 @@ import {
   LoginComponent
 } from './components/pages/login/login.component';
 import {
-  UserListComponent
-} from './components/pages/user/user-list/user-list.component';
-import {
   AuthGuard
 } from './guards/auth.guard';
-
-import {
-  ProductCategoryListComponent
-} from './components/pages/product-category/product-category-list/product-category-list.component';
-import {
-  ProductListComponent
-} from './components/pages/product/product-list/product-list.component';
 import {
   ProductInputListComponent
 } from './components/pages/product-input/product-input-list/product-input-list.component';
@@ -49,7 +39,7 @@ const routes: Routes = [{
   },
   {
     path: 'profile',
-    component: UserProfileComponent,
+    loadChildren: './components/pages/user-profile/user-profile.module#UserProfileModule',
     canActivate: [AuthGuard]
   },
   {

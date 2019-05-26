@@ -21,10 +21,6 @@ import {
   NgxPaginationModule
 } from 'ngx-pagination';
 
-import { UserListComponent } from './components/pages/user/user-list/user-list.component';
-import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
-import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
-import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 // tslint:disable-next-line: max-line-length
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
@@ -47,8 +43,6 @@ import { ProductPhotoUploadComponent } from './components/pages/product-photo/pr
 import { ProductPhotoEditModalComponent } from './components/pages/product-photo/product-photo-edit-modal/product-photo-edit-modal.component';
 // tslint:disable-next-line: max-line-length
 import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
-import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
-import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
 import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
 import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
 import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
@@ -82,8 +76,6 @@ function jwtFactory(authService: AuthService) {
     ProductPhotoUploadComponent,
     ProductPhotoEditModalComponent,
     ProductPhotoDeleteModalComponent,
-    UserProfileComponent,
-    PhoneNumberAuthModalComponent,
     ChatGroupListComponent,
     ChatGroupNewModalComponent,
     ChatGroupFormComponent,

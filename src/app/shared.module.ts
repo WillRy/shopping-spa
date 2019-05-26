@@ -12,6 +12,7 @@ import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-er
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
     ListErrorComponent,
     CardErrorComponent,
     AlertErrorComponent,
-    NumberFormatBrPipe
+    NumberFormatBrPipe,
+    PhoneNumberAuthModalComponent
   ],
   exports: [
     ModalComponent,
@@ -42,7 +44,8 @@ import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
     ListErrorComponent,
     CardErrorComponent,
     AlertErrorComponent,
-    NumberFormatBrPipe
+    NumberFormatBrPipe,
+    PhoneNumberAuthModalComponent
   ],
   providers: [
     AuthGuard
