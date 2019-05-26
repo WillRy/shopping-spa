@@ -58,13 +58,13 @@ const routes: Routes = [{
     canActivate: [AuthGuard]
   },
   {
-    path: 'inputs/list',
-    component: ProductInputListComponent,
+    path: 'inputs',
+    loadChildren: './components/pages/product-input/product-input.module#ProductInputModule',
     canActivate: [AuthGuard]
   },
   {
-    path: 'outputs/list',
-    component: ProductOutputListComponent,
+    path: 'outputs',
+    loadChildren: './components/pages/product-output/product-output.module#ProductOutputModule',
     canActivate: [AuthGuard]
   },
   {
