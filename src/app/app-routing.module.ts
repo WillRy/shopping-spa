@@ -17,15 +17,6 @@ import {
 import {
   AuthGuard
 } from './guards/auth.guard';
-import {
-  ProductInputListComponent
-} from './components/pages/product-input/product-input-list/product-input-list.component';
-import {
-  ProductOutputListComponent
-} from './components/pages/product-output/product-output-list/product-output-list.component';
-import {
-  UserProfileComponent
-} from './components/pages/user-profile/user-profile.component';
 
 
 const routes: Routes = [{
