@@ -17,15 +17,6 @@ import {
 import {
   AuthGuard
 } from './guards/auth.guard';
-import {
-  ProductInputListComponent
-} from './components/pages/product-input/product-input-list/product-input-list.component';
-import {
-  ProductOutputListComponent
-} from './components/pages/product-output/product-output-list/product-output-list.component';
-import {
-  UserProfileComponent
-} from './components/pages/user-profile/user-profile.component';
 
 
 const routes: Routes = [{
@@ -52,26 +43,31 @@ const routes: Routes = [{
   //   loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule',
   //   canActivate: [AuthGuard]
   // },
+
+  {
+    path: 'inputs',
+    loadChildren: './components/pages/product-input/product-input.module#ProductInputModule',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'outputs',
+    loadChildren: './components/pages/product-output/product-output.module#ProductOutputModule',
+    canActivate: [AuthGuard]
+  },
   {
     path: 'products',
-    loadChildren: './components/pages/product/product.module#ProductModule',
+    children : [
+      { path: '', loadChildren: './components/pages/product/product.module#ProductModule'},
+      { path: ':product/photos/manager', loadChildren: './components/pages/product-photo/product-photo.module#ProductPhotoModule'},
+      { path: ':product/categories/list', loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule'}
+    ],
     canActivate: [AuthGuard]
   },
-  {
-    path: 'inputs/list',
-    component: ProductInputListComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'outputs/list',
-    component: ProductOutputListComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'products/:product/photos/manager',
-    component: ProductPhotoManagerComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'products/:product/photos/manager',
+  //   component: ProductPhotoManagerComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'chat_groups/list',
     component: ChatGroupListComponent,

@@ -25,24 +25,6 @@ import {
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
-import { ProductInputListComponent } from './components/pages/product-input/product-input-list/product-input-list.component';
-import { ProductInputNewModalComponent } from './components/pages/product-input/product-input-new-modal/product-input-new-modal.component';
-import { ProductInputFormComponent } from './components/pages/product-input/product-input-form/product-input-form.component';
-// tslint:disable-next-line: max-line-length
-import { ProductInputSearchFormComponent } from './components/pages/product-input/product-input-search-form/product-input-search-form.component';
-import { Select2Module } from 'ng2-select2';
-import { ProductOutputListComponent } from './components/pages/product-output/product-output-list/product-output-list.component';
-// tslint:disable-next-line: max-line-length
-import { ProductOutputNewModalComponent } from './components/pages/product-output/product-output-new-modal/product-output-new-modal.component';
-import { ProductOutputFormComponent } from './components/pages/product-output/product-output-form/product-output-form.component';
-// tslint:disable-next-line: max-line-length
-import { ProductOutputSearchFormComponent } from './components/pages/product-output/product-output-search-form/product-output-search-form.component';
-import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
-import { ProductPhotoUploadComponent } from './components/pages/product-photo/product-photo-upload/product-photo-upload.component';
-// tslint:disable-next-line: max-line-length
-import { ProductPhotoEditModalComponent } from './components/pages/product-photo/product-photo-edit-modal/product-photo-edit-modal.component';
-// tslint:disable-next-line: max-line-length
-import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
 import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
 import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
 import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
@@ -64,18 +46,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductInputListComponent,
-    ProductInputNewModalComponent,
-    ProductInputFormComponent,
-    ProductInputSearchFormComponent,
-    ProductOutputListComponent,
-    ProductOutputNewModalComponent,
-    ProductOutputFormComponent,
-    ProductOutputSearchFormComponent,
-    ProductPhotoManagerComponent,
-    ProductPhotoUploadComponent,
-    ProductPhotoEditModalComponent,
-    ProductPhotoDeleteModalComponent,
     ChatGroupListComponent,
     ChatGroupNewModalComponent,
     ChatGroupFormComponent,
@@ -97,7 +67,7 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     }),
-    Select2Module,
+
   ],
   providers: [
     {

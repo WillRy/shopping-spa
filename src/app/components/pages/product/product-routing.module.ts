@@ -10,8 +10,7 @@ import {
 
 
 const productRoutes = [
-    {path: 'list', component: ProductListComponent},
-    {path: ':product/categories/list', loadChildren: '../product-category/product-category.module#ProductCategoryModule'}
+    {path: 'list', component: ProductListComponent}
 ];
 
     @NgModule({

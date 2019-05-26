@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
+import { Select2Module } from 'ng2-select2';
 
 
 @NgModule({
