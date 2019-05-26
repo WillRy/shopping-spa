@@ -43,11 +43,7 @@ const routes: Routes = [{
   //   loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule',
   //   canActivate: [AuthGuard]
   // },
-  {
-    path: 'products',
-    loadChildren: './components/pages/product/product.module#ProductModule',
-    canActivate: [AuthGuard]
-  },
+
   {
     path: 'inputs',
     loadChildren: './components/pages/product-input/product-input.module#ProductInputModule',
@@ -59,10 +55,19 @@ const routes: Routes = [{
     canActivate: [AuthGuard]
   },
   {
-    path: 'products/:product/photos/manager',
-    component: ProductPhotoManagerComponent,
+    path: 'products',
+    children : [
+      { path: '', loadChildren: './components/pages/product/product.module#ProductModule'},
+      { path: ':product/photos/manager', loadChildren: './components/pages/product-photo/product-photo.module#ProductPhotoModule'},
+      { path: ':product/categories/list', loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule'}
+    ],
     canActivate: [AuthGuard]
   },
+  // {
+  //   path: 'products/:product/photos/manager',
+  //   component: ProductPhotoManagerComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'chat_groups/list',
     component: ChatGroupListComponent,

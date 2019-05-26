@@ -25,12 +25,6 @@ import {
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
-import { ProductPhotoManagerComponent } from './components/pages/product-photo/product-photo-manager/product-photo-manager.component';
-import { ProductPhotoUploadComponent } from './components/pages/product-photo/product-photo-upload/product-photo-upload.component';
-// tslint:disable-next-line: max-line-length
-import { ProductPhotoEditModalComponent } from './components/pages/product-photo/product-photo-edit-modal/product-photo-edit-modal.component';
-// tslint:disable-next-line: max-line-length
-import { ProductPhotoDeleteModalComponent } from './components/pages/product-photo/product-photo-delete-modal/product-photo-delete-modal.component';
 import { ChatGroupListComponent } from './components/pages/chat-group/chat-group-list/chat-group-list.component';
 import { ChatGroupNewModalComponent } from './components/pages/chat-group/chat-group-new-modal/chat-group-new-modal.component';
 import { ChatGroupFormComponent } from './components/pages/chat-group/chat-group-form/chat-group-form.component';
@@ -52,10 +46,6 @@ function jwtFactory(authService: AuthService) {
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductPhotoManagerComponent,
-    ProductPhotoUploadComponent,
-    ProductPhotoEditModalComponent,
-    ProductPhotoDeleteModalComponent,
     ChatGroupListComponent,
     ChatGroupNewModalComponent,
     ChatGroupFormComponent,
