@@ -10,7 +10,7 @@ import { ProductCategoryListComponent } from './product-category-list/product-ca
 
 
 const productCategoryRoutes = [
-    {path: ':product/categories/list', component: ProductCategoryListComponent}];
+    {path: '', component: ProductCategoryListComponent}];
 
     @NgModule({
         imports: [RouterModule.forChild(productCategoryRoutes)],

@@ -57,11 +57,11 @@ const routes: Routes = [{
     loadChildren: './components/pages/category/category.module#CategoryModule',
     canActivate: [AuthGuard]
   },
-  {
-    path: 'products',
-    loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule',
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'products',
+  //   loadChildren: './components/pages/product-category/product-category.module#ProductCategoryModule',
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'products',
     loadChildren: './components/pages/product/product.module#ProductModule',
