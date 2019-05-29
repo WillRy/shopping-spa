@@ -36,6 +36,6 @@ export class ProductCategoryHttpService {
   }
 
   destroy(productId: number, categoryId: number): Observable<any> {
-    return this.http.delete < {data: ProductCategory} > (this.getBaseUrl(productId, categoryId));
+    return this.http.delete(this.getBaseUrl(productId, categoryId));
   }
 }

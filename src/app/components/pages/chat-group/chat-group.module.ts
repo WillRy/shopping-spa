@@ -1,3 +1,4 @@
+import { ChatGroupUserListComponent } from './../chat-group-user/chat-group-user-list/chat-group-user-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
