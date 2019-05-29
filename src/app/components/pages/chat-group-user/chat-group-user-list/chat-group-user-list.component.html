@@ -41,4 +41,4 @@
   </div>
 
   <chat-group-user-delete-model [chatGroupId]="chatGroupId" [userId]="userIdToDelete"
-                       (onSuccess)="getUsers()" ></chat-group-user-delete-model>
+                       (onSuccess)="onDeleteSuccess($event)" ></chat-group-user-delete-model>
