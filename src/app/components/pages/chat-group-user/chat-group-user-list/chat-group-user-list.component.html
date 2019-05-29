@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>Membros do grupo - {{chatGroup?.name}} | Total de {{chatGroup?.count_users}} | usuários </h1>
+    <h1>Membros do grupo - {{chatGroup?.name}} | Total de {{chatGroup?.count_users}}  usuários </h1>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -27,7 +27,7 @@
         <td>{{user.email}}</td>
         <td>{{user.profile.phone_number}}</td>
         <td>
-          <a href="javascript:void(0)">
+          <a href="javascript:void(0)" (click)="openModalDelete(user.id)">
             <i class="fas fa-trash-alt"></i>
           </a>
         </td>
@@ -40,5 +40,5 @@
                           nextLabel="Próximo"></pagination-controls>
   </div>
 
-  <!-- <chat-group-user-delete-model [chatGroupId]="chatGroupId" [userId]="userIdToDelete"
-                       (onSuccess)="getUsers()" ></chat-group-user-delete-model> -->
+  <chat-group-user-delete-model [chatGroupId]="chatGroupId" [userId]="userIdToDelete"
+                       (onSuccess)="getUsers()" ></chat-group-user-delete-model>

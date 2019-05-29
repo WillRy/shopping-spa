@@ -117,7 +117,6 @@ export class ChatGroupUserNewComponent implements OnInit {
 
   change($event) {
     this.usersId = $event.value;
-    this.prepareSelect2();
   }
 
 }

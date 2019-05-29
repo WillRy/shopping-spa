@@ -1,10 +1,28 @@
-import { ChatGroupUserHttpService } from './../../../../services/http/chat-group-user-http-service';
-import { ChatGroup } from './../../../../model';
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model';
-import { ActivatedRoute } from '@angular/router';
-import { NotifyMessageService } from 'src/app/services/notify-message.service';
-import { HttpErrorResponse } from '@angular/common/http';
+
+import {
+  ChatGroupUserHttpService
+} from './../../../../services/http/chat-group-user-http-service';
+import {
+  ChatGroup
+} from './../../../../model';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  User
+} from 'src/app/model';
+import {
+  ActivatedRoute
+} from '@angular/router';
+import {
+  NotifyMessageService
+} from 'src/app/services/notify-message.service';
+import {
+  HttpErrorResponse
+} from '@angular/common/http';
+import { ChatGroupUserDeleteModalComponent } from '../chat-group-user-delete-modal/chat-group-user-delete-modal.component';
 
 @Component({
   selector: 'app-chat-group-user-list',
@@ -17,7 +35,9 @@ export class ChatGroupUserListComponent implements OnInit {
 
   chatGroup: ChatGroup;
 
-  users: Array <User> = [];
+  users: Array < User > = [];
+
+  userIdToDelete: number = null;
 
   pagination = {
     page: 1,
@@ -25,7 +45,8 @@ export class ChatGroupUserListComponent implements OnInit {
     itemsPerPage: 5
   };
 
-
+  @ViewChild(ChatGroupUserDeleteModalComponent)
+  chatGroupUserDeleteModal: ChatGroupUserDeleteModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +63,9 @@ export class ChatGroupUserListComponent implements OnInit {
 
 
   getUsers() {
-    this.chatGroupUserHttp.list(this.chatGroupId, {page: this.pagination.page}).subscribe(
+    this.chatGroupUserHttp.list(this.chatGroupId, {
+      page: this.pagination.page
+    }).subscribe(
       (response) => {
         this.chatGroup = response.data.chat_group;
         this.users = response.data.users;
@@ -77,10 +100,10 @@ export class ChatGroupUserListComponent implements OnInit {
     this.getUsers();
   }
 
-  // showModalDelete(categoryId: number) {
-  //   this.categoryId = categoryId;
-  //   this.productCategoryDeleteModal.showModal();
-  // }
-  // openModalDelete(user.id)
+
+  openModalDelete(id) {
+    this.userIdToDelete = id;
+    this.chatGroupUserDeleteModal.showModal();
+  }
 
 }
