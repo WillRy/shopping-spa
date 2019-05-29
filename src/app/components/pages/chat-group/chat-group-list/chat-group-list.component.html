@@ -26,10 +26,12 @@
             <td>{{chatGroup.count_users}}</td>
             <td>{{chatGroup.created_at.date | date: 'dd/MM/yyyy' }}</td>
             <td>
+              <a href="javascript:void(0)" [routerLink]="['/chat_groups', chatGroup.id, 'users','list']">
+                <i class="fas fa-user"></i>
+              </a>|
               <a href="javascript:void(0)" (click)="chatGroupEditService.showModalEdit(chatGroup.id)">
                 <i class="fas fa-edit"></i>
-              </a>
-              |
+              </a>|
               <a href="javascript:void(0)" (click)="chatGroupDeleteService.showModalDelete(chatGroup.id)">
                 <i class="fas fa-trash-alt"></i>
               </a>

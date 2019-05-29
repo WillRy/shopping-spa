@@ -64,7 +64,10 @@ const routes: Routes = [{
   // },
   {
     path: 'chat_groups',
-    loadChildren: './components/pages/chat-group/chat-group.module#ChatGroupModule',
+    children : [
+      { path: '', loadChildren: './components/pages/chat-group/chat-group.module#ChatGroupModule'},
+      { path: ':chat_group/users/list', loadChildren: './components/pages/chat-group-user/chat-group-user.module#ChatGroupUserModule'},
+    ],
     canActivate: [AuthGuard]
   },
   {

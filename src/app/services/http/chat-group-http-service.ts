@@ -8,7 +8,6 @@ import {
   import {
     Observable
   } from 'rxjs/internal/Observable';
-  import { Category } from 'src/app/model';
   import {map} from 'rxjs/operators';
   import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
   import { AuthService } from '../auth.service';
@@ -62,7 +61,7 @@ import {
     private formDataToSend(data: ChatGroup): FormData {
       const formData = new FormData();
       formData.append('name', data.name);
-      if (data.photo){
+      if (data.photo) {
         formData.append('photo', data.photo);
       }
       return formData;
