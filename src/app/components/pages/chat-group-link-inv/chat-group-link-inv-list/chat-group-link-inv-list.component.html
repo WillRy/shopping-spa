@@ -1,0 +1,47 @@
+<div class="row">
+  <h1>Listagem de links de convites - {{chatGroup?.name}}</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td colspan="5">
+        <button class="btn btn-primary" (click)="linkInvInsertService.showModalInsert()">Novo Link</button>
+      </td>
+    </tr>
+    <tr>
+      <th style="width: 5%" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+      <th style="width: 45%">Total</th>
+      <th style="width: 25%">Remaining</th>
+      <th style="width: 25%" [sortColumn]="sortColumn" columnName="expires_at" (onSort)="sort($event)">Expira</th>
+      <th style="width: 10%">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let linkInv of linkInvitations | paginate: {
+                itemsPerPage: pagination.itemsPerPage,
+                currentPage: pagination.page,
+                totalItems: pagination.totalItems}">
+      <td>{{linkInv.id}}</td>
+      <td>{{linkInv.total}}</td>
+      <td>{{linkInv.remaining}}</td>
+      <td>{{linkInv.expires_at?.date | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <a href="javascript:void(0)" (click)="linkInvEditService.showModalEdit(linkInv.id)">
+          <i class="fas fa-edit"></i>
+        </a>
+        |
+        <a href="javascript:void(0)" (click)="linkInvDeleteService.showModalDelete(linkInv.id)">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="pageChanged($event)"
+                        previousLabel="Anterior"
+                        nextLabel="Próximo"></pagination-controls>
+</div>
+
+<chat-group-link-inv-new-modal [chatGroupId]="groupId" (onSuccess)="linkInvInsertService.onInsertSuccess($event)" (onError)="linkInvInsertService.onInsertError($event)"></chat-group-link-inv-new-modal>
+<chat-group-link-inv-edit-modal [chatGroupId]="groupId" [linkInvitationId]="linkInvitationId" (onSuccess)="linkInvEditService.onEditSuccess($event)" (onError)="linkInvEditService.onEditError($event)"></chat-group-link-inv-edit-modal>
+<chat-group-link-inv-delete-modal [chatGroupId]="groupId" [linkInvitationId]="linkInvitationId" (onSuccess)="linkInvDeleteService.onDeleteSuccess($event)" (onError)="linkInvDeleteService.onDeleteError($event)"></chat-group-link-inv-delete-modal >
