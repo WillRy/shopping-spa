@@ -79,7 +79,7 @@ export class ChatGroupLinkInvEditModalComponent implements OnInit {
     this.getLinkInvitation();
   }
 
-  getLinkInvitation(){
+  getLinkInvitation() {
     if (this._chatGroupId && this._linkInvitationId) {
         this.linkInvHttp.get(this._chatGroupId, this._linkInvitationId).subscribe(linkInv => {
           const data: any = linkInv;

@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ChatGroupLinkInvNewModalComponent } from '../chat-group-link-inv-new-modal/chat-group-link-inv-new-modal.component';
 import { ChatGroupLinkInvEditModalComponent } from '../chat-group-link-inv-edit-modal/chat-group-link-inv-edit-modal.component';
 import { ChatGroupLinkInvEditService } from './chat-group-link-inv-edit.service';
+import { ChatGroupLinkInvDeleteService } from './chat-group-link-inv-delete.service';
+import { ChatGroupLinkInvDeleteModalComponent } from '../chat-group-link-inv-delete-modal/chat-group-link-inv-delete-modal.component';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -40,15 +42,20 @@ export class ChatGroupLinkInvListComponent implements OnInit {
   @ViewChild(ChatGroupLinkInvEditModalComponent)
   linkInvEditModal: ChatGroupLinkInvEditModalComponent;
 
+  @ViewChild(ChatGroupLinkInvDeleteModalComponent)
+  linkInvDeleteModal: ChatGroupLinkInvDeleteModalComponent;
+
   constructor(
     private linkInvHttp: ChatGroupLinkInvHttpService,
     private route: ActivatedRoute,
     public linkInvInsertService: ChatGroupLinkInvInsertService,
-    public linkInvEditService: ChatGroupLinkInvEditService
+    public linkInvEditService: ChatGroupLinkInvEditService,
+    public linkInvDeleteService: ChatGroupLinkInvDeleteService
   ) {
 
     this.linkInvInsertService.chatGroupLinkInvListComponent = this;
     this.linkInvEditService.chatGroupLinkInvListComponent = this;
+    this.linkInvDeleteService.chatGroupLinkInvListComponent = this;
   }
 
   ngOnInit() {

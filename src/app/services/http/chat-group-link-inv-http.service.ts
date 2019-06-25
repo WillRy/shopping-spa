@@ -16,13 +16,13 @@ export class ChatGroupLinkInvHttpService {
     private baseAPI = `${environment.api.url}`;
     constructor(private http: HttpClient, private authService: AuthService) { }
 
-// tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: max-line-length
     list(chatGroupId: number, searchParams: SearchParams): Observable<{data: {group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any}> {
       const sParams = new SearchParamsBuilder(searchParams).makeObject();
       const params = new HttpParams({
         fromObject: (<any>sParams)
       });
-    // tslint:disable-next-line: max-line-length
+      // tslint:disable-next-line: max-line-length
       return this.http.get < {data: {group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any} >(this.getBaseUrl(chatGroupId), {
         params
       });
@@ -48,9 +48,9 @@ export class ChatGroupLinkInvHttpService {
       );
     }
 
-    // destroy(chatGroupId: number, usersId: number): Observable<any> {
-    //   return this.http.delete(this.getBaseUrl(chatGroupId, usersId));
-    // }
+    destroy(chatGroupId: number, invitationId: number): Observable<any> {
+      return this.http.delete(this.getBaseUrl(chatGroupId, invitationId));
+    }
 
     private getBaseUrl(chatGroupId: number, invitationId: number = null): string {
       let baseUrl = `${this.baseAPI}/chat_groups/${chatGroupId}/link_invitations`;

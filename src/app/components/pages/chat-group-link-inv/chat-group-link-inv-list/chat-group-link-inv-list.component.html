@@ -28,6 +28,10 @@
         <a href="javascript:void(0)" (click)="linkInvEditService.showModalEdit(linkInv.id)">
           <i class="fas fa-edit"></i>
         </a>
+        |
+        <a href="javascript:void(0)" (click)="linkInvDeleteService.showModalDelete(linkInv.id)">
+          <i class="fas fa-trash-alt"></i>
+        </a>
       </td>
     </tr>
     </tbody>
@@ -40,3 +44,4 @@
 
 <chat-group-link-inv-new-modal [chatGroupId]="groupId" (onSuccess)="linkInvInsertService.onInsertSuccess($event)" (onError)="linkInvInsertService.onInsertError($event)"></chat-group-link-inv-new-modal>
 <chat-group-link-inv-edit-modal [chatGroupId]="groupId" [linkInvitationId]="linkInvitationId" (onSuccess)="linkInvEditService.onEditSuccess($event)" (onError)="linkInvEditService.onEditError($event)"></chat-group-link-inv-edit-modal>
+<chat-group-link-inv-delete-modal [chatGroupId]="groupId" [linkInvitationId]="linkInvitationId" (onSuccess)="linkInvDeleteService.onDeleteSuccess($event)" (onError)="linkInvDeleteService.onDeleteError($event)"></chat-group-link-inv-delete-modal >

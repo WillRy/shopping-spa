@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ChatGroupLinkInvListComponent } from './chat-group-link-inv-list/chat-group-link-inv-list.component';
 import { ChatGroupLinkInvRountingModule } from './chat-group-link-inv-routing.module';
 import { ChatGroupLinkInvEditModalComponent } from './chat-group-link-inv-edit-modal/chat-group-link-inv-edit-modal.component';
+import { ChatGroupLinkInvDeleteModalComponent } from './chat-group-link-inv-delete-modal/chat-group-link-inv-delete-modal.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ChatGroupLinkInvEditModalComponent } from './chat-group-link-inv-edit-m
     ChatGroupLinkInvFormComponent,
     ChatGroupLinkInvNewModalComponent,
     ChatGroupLinkInvEditModalComponent,
+    ChatGroupLinkInvDeleteModalComponent,
   ],
   exports: [],
   providers: []
