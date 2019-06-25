@@ -17,23 +17,23 @@ export class ChatGroupLinkInvHttpService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
 // tslint:disable-next-line: max-line-length
-    list(chatGroupId: number, searchParams: SearchParams): Observable<{data: {chat_group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any}> {
+    list(chatGroupId: number, searchParams: SearchParams): Observable<{data: {group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any}> {
       const sParams = new SearchParamsBuilder(searchParams).makeObject();
       const params = new HttpParams({
         fromObject: (<any>sParams)
       });
     // tslint:disable-next-line: max-line-length
-      return this.http.get < {data: {chat_group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any} >(this.getBaseUrl(chatGroupId), {
+      return this.http.get < {data: {group: ChatGroup, link_invitations: Array<ChatGroupLinkInvitation>}, meta: any} >(this.getBaseUrl(chatGroupId), {
         params
       });
     }
 
-    // create(chatGroupId: number, usersId: number[]): Observable<{chat_group: ChatGroup, users: User[] } > {
-    //   // tslint:disable-next-line: max-line-length
-    //   return this.http.post <{ data: { chat_group: ChatGroup, users: User[] } }> (this.getBaseUrl(chatGroupId), {users: usersId}).pipe(
-    //     map(response => response.data)
-    //   );
-    // }
+    create(chatGroupId: number, data: ChatGroupLinkInvitation): Observable<ChatGroupLinkInvitation> {
+      // tslint:disable-next-line: max-line-length
+      return this.http.post <{ data: ChatGroupLinkInvitation}> (this.getBaseUrl(chatGroupId), data).pipe(
+        map(response => response.data)
+      );
+    }
 
     // destroy(chatGroupId: number, usersId: number): Observable<any> {
     //   return this.http.delete(this.getBaseUrl(chatGroupId, usersId));

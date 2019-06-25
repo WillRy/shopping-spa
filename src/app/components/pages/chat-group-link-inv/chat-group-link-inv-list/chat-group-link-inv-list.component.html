@@ -4,9 +4,7 @@
     <thead>
     <tr>
       <td colspan="5">
-        <!-- <chat-group-user-new [chatGroupId]="chatGroupId"
-                             (onSucess)="onInsertSuccess($event)"
-                             (onError)="onInsertError($event)"></chat-group-user-new> -->
+        <button class="btn btn-primary" (click)="linkInvInsertService.showModalInsert()">Novo Link</button>
       </td>
     </tr>
     <tr>
@@ -39,6 +37,5 @@
                         previousLabel="Anterior"
                         nextLabel="Próximo"></pagination-controls>
 </div>
-<!--
-<chat-group-user-delete-model [chatGroupId]="chatGroupId" [userId]="userIdToDelete"
-                     (onSuccess)="onDeleteSuccess($event)" ></chat-group-user-delete-model> -->
+
+<chat-group-link-inv-new-modal [chatGroupId]="groupId" (onSuccess)="linkInvInsertService.onInsertSuccess($event)" (onError)="linkInvInsertService.onInsertError($event)"></chat-group-link-inv-new-modal>

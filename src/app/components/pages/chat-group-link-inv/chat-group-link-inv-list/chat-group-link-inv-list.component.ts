@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChatGroupLinkInvInsertService } from './chat-group-link-inv-insert.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatGroupLinkInvitation, ChatGroup } from 'src/app/model';
 import { ChatGroupLinkInvHttpService } from 'src/app/services/http/chat-group-link-inv-http.service';
 import { ActivatedRoute } from '@angular/router';
+import { ChatGroupLinkInvNewModalComponent } from '../chat-group-link-inv-new-modal/chat-group-link-inv-new-modal.component';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -28,21 +30,23 @@ export class ChatGroupLinkInvListComponent implements OnInit {
 
 
 
-  // @ViewChild(ProductInputNewModalComponent)
-  // inputNewModal: ProductInputNewModalComponent;
+  @ViewChild(ChatGroupLinkInvNewModalComponent)
+  linkInvNewModal: ChatGroupLinkInvNewModalComponent;
 
   constructor(
     private linkInvHttp: ChatGroupLinkInvHttpService,
     private route: ActivatedRoute,
+    public linkInvInsertService: ChatGroupLinkInvInsertService
   ) {
+
+    this.linkInvInsertService.chatGroupLinkInvListComponent = this;
+  }
+
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       this.groupId = params.chat_group;
       this.getLinkInvitations();
     });
-  }
-
-  ngOnInit() {
-    this.getLinkInvitations();
   }
 
   getLinkInvitations() {
@@ -50,7 +54,7 @@ export class ChatGroupLinkInvListComponent implements OnInit {
       page: this.pagination.page,
       sort: this.sortColumn.column === '' ? null : this.sortColumn
     }).subscribe(response => {
-      this.chatGroup = response.data.chat_group;
+      this.chatGroup = response.data.group;
       this.linkInvitations = response.data.link_invitations;
       this.pagination.totalItems = response.meta.total;
       this.pagination.itemsPerPage = response.meta.per_page;

@@ -1,3 +1,5 @@
+import { ChatGroupLinkInvFormComponent } from './chat-group-link-inv-form/chat-group-link-inv-form.component';
+import { ChatGroupLinkInvNewModalComponent } from './chat-group-link-inv-new-modal/chat-group-link-inv-new-modal.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +20,9 @@ import { ChatGroupLinkInvRountingModule } from './chat-group-link-inv-routing.mo
     ChatGroupLinkInvRountingModule
   ],
   declarations: [
-    ChatGroupLinkInvListComponent
+    ChatGroupLinkInvListComponent,
+    ChatGroupLinkInvFormComponent,
+    ChatGroupLinkInvNewModalComponent,
   ],
   exports: [],
   providers: []
