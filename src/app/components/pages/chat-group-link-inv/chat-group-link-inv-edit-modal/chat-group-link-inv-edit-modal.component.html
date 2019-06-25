@@ -1,0 +1,18 @@
+<form action="" (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <div modal-title>
+      Editar link
+    </div>
+    <div modal-body>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+
+      <chat-group-link-inv-form [form]="form"></chat-group-link-inv-form>
+    </div>
+    <div modal-footer>
+      <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Incluir</button>
+    </div>
+  </modal>
+</form>

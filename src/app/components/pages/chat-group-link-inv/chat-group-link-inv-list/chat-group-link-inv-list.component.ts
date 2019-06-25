@@ -1,9 +1,12 @@
+import { ChatGroupEditService } from './../../chat-group/chat-group-list/chat-group-edit-service';
 import { ChatGroupLinkInvInsertService } from './chat-group-link-inv-insert.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatGroupLinkInvitation, ChatGroup } from 'src/app/model';
 import { ChatGroupLinkInvHttpService } from 'src/app/services/http/chat-group-link-inv-http.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatGroupLinkInvNewModalComponent } from '../chat-group-link-inv-new-modal/chat-group-link-inv-new-modal.component';
+import { ChatGroupLinkInvEditModalComponent } from '../chat-group-link-inv-edit-modal/chat-group-link-inv-edit-modal.component';
+import { ChatGroupLinkInvEditService } from './chat-group-link-inv-edit.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -15,6 +18,7 @@ export class ChatGroupLinkInvListComponent implements OnInit {
 
   groupId: number;
   linkInvitation: number;
+  linkInvitationId: number;
   chatGroup: ChatGroup;
   linkInvitations: Array<ChatGroupLinkInvitation> = [];
   pagination = {
@@ -33,13 +37,18 @@ export class ChatGroupLinkInvListComponent implements OnInit {
   @ViewChild(ChatGroupLinkInvNewModalComponent)
   linkInvNewModal: ChatGroupLinkInvNewModalComponent;
 
+  @ViewChild(ChatGroupLinkInvEditModalComponent)
+  linkInvEditModal: ChatGroupLinkInvEditModalComponent;
+
   constructor(
     private linkInvHttp: ChatGroupLinkInvHttpService,
     private route: ActivatedRoute,
-    public linkInvInsertService: ChatGroupLinkInvInsertService
+    public linkInvInsertService: ChatGroupLinkInvInsertService,
+    public linkInvEditService: ChatGroupLinkInvEditService
   ) {
 
     this.linkInvInsertService.chatGroupLinkInvListComponent = this;
+    this.linkInvEditService.chatGroupLinkInvListComponent = this;
   }
 
   ngOnInit() {

@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ChatGroupLinkInvListComponent } from './chat-group-link-inv-list/chat-group-link-inv-list.component';
 import { ChatGroupLinkInvRountingModule } from './chat-group-link-inv-routing.module';
+import { ChatGroupLinkInvEditModalComponent } from './chat-group-link-inv-edit-modal/chat-group-link-inv-edit-modal.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ChatGroupLinkInvRountingModule } from './chat-group-link-inv-routing.mo
     ChatGroupLinkInvListComponent,
     ChatGroupLinkInvFormComponent,
     ChatGroupLinkInvNewModalComponent,
+    ChatGroupLinkInvEditModalComponent,
   ],
   exports: [],
   providers: []

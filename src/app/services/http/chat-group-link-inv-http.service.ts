@@ -35,14 +35,27 @@ export class ChatGroupLinkInvHttpService {
       );
     }
 
+    update(chatGroupId: number, invitationId: number, data: ChatGroupLinkInvitation): Observable<ChatGroupLinkInvitation> {
+      // tslint:disable-next-line: max-line-length
+      return this.http.put <{ data: ChatGroupLinkInvitation}> (this.getBaseUrl(chatGroupId, invitationId), data).pipe(
+        map(response => response.data)
+      );
+    }
+
+    get(chatGroupId: number, invitationId: number): Observable < ChatGroupLinkInvitation > {
+      return this.http.get < {data: ChatGroupLinkInvitation} > (`${this.getBaseUrl(chatGroupId, invitationId)}`).pipe(
+        map(response => response.data)
+      );
+    }
+
     // destroy(chatGroupId: number, usersId: number): Observable<any> {
     //   return this.http.delete(this.getBaseUrl(chatGroupId, usersId));
     // }
 
-    private getBaseUrl(chatGroupId: number, userId: number = null): string {
+    private getBaseUrl(chatGroupId: number, invitationId: number = null): string {
       let baseUrl = `${this.baseAPI}/chat_groups/${chatGroupId}/link_invitations`;
-      if (userId) {
-        baseUrl += `/${userId}`;
+      if (invitationId) {
+        baseUrl += `/${invitationId}`;
       }
       return baseUrl;
     }

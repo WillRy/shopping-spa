@@ -9,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Injectable({
     providedIn: 'root'
 })
-export class ChatGroupLinkInvInsertService {
+export class ChatGroupLinkInvEditService {
+
 
     private _chatGroupLinkInvListComponent: ChatGroupLinkInvListComponent;
 
@@ -18,17 +19,18 @@ export class ChatGroupLinkInvInsertService {
     set chatGroupLinkInvListComponent(value: ChatGroupLinkInvListComponent) {
         this._chatGroupLinkInvListComponent = value;
     }
-    showModalInsert() {
-        this._chatGroupLinkInvListComponent.linkInvNewModal.showModal();
+    showModalEdit(value: number) {
+        this._chatGroupLinkInvListComponent.linkInvitationId = value;
+        this._chatGroupLinkInvListComponent.linkInvEditModal.showModal();
     }
 
-    onInsertSuccess($event: any) {
-        this.notifyMessage.success('Link Criado com sucesso');
+    onEditSuccess($event: any) {
+        this.notifyMessage.success('Link Editado com sucesso');
         this._chatGroupLinkInvListComponent.getLinkInvitations();
     }
 
-    onInsertError($event: HttpErrorResponse) {
-        this.notifyMessage.error('Erro ao gerar link de convite');
+    onEditError($event: HttpErrorResponse) {
+        this.notifyMessage.error('Erro ao editar link de convite');
         console.log($event);
     }
 }
