@@ -70,7 +70,10 @@ export class UserProfileHttpService {
   }
 
   private deletePhotoKey(array) {
-    array.splice(array.indexOf('photo'), 1);
+    const index = array.indexOf('photo');
+    if(index !== -1){
+      array.splice(array.indexOf('photo'), 1);
+    }
   }
 
 }

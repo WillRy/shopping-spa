@@ -26,6 +26,7 @@ import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { RefreshTokenInterceptorService } from './services/refresh-token-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared.module';
+import { environment } from 'src/environments/environment';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -33,7 +34,9 @@ function jwtFactory(authService: AuthService) {
       return authService.getToken();
     },
     whitelistedDomains: [
-      new RegExp('localhost:8000/*')
+      new RegExp(`${environment.api.host}`),
+      new RegExp('http://localhost:8000/*'),
+      new RegExp('http://192.168.25.7:8000/*')
     ]
   };
 }
