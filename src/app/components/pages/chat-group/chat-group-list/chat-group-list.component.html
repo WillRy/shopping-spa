@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <th style="width: 5%">ID</th>
-            <th style="width: 65%">Nome</th>
+            <th style="width: 50%">Nome</th>
             <th style="width: 10%">Usuarios</th>
             <th style="width: 10%">Criação</th>
             <th>Ações</th>
@@ -31,6 +31,9 @@
               </a>|
               <a href="javascript:void(0)" [routerLink]="['/chat_groups', chatGroup.id, 'link-invitations','list']">
                 <i class="fas fa-link"></i>
+              </a>|
+              <a href="javascript:void(0)" [routerLink]="['/chat_groups', chatGroup.id, 'user-invitations','list']">
+                <i class="fas fa-thumbs-up"></i>
               </a>|
               <a href="javascript:void(0)" (click)="chatGroupEditService.showModalEdit(chatGroup.id)">
                 <i class="fas fa-edit"></i>
