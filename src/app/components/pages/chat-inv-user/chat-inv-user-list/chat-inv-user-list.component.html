@@ -1,3 +1,43 @@
-<p>
-  chat-inv-user-list works!
-</p>
+<div class="row">
+  <h1>Solicitações de entrada - {{chatGroup?.name}}</h1>
+  <table class="table table-striped">
+    <thead>
+
+    <tr>
+      <th style="width: 5%" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+      <th style="width: 50%">Usuário</th>
+      <th style="width: 30%">Status</th>
+      <th style="width: 15%" [sortColumn]="sortColumn" columnName="created_at" (onSort)="sort($event)">Criado em:</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let inv of invitations | paginate: {
+                itemsPerPage: pagination.itemsPerPage,
+                currentPage: pagination.page,
+                totalItems: pagination.totalItems}">
+      <td>{{inv.id}}</td>
+      <td>{{inv.user.name + ' | '+inv.user.profile.phone_number}}</td>
+      <td>
+        <ng-container *ngIf="inv.status !== STATUS.PENDING; else elseStatus">
+          <h6>
+            <span class="badge" [ngClass]="{'badge-danger':inv.status !== STATUS.APPROVE, 'badge-success':inv.status === STATUS.APPROVE}">{{inv.status === STATUS.APPROVE? 'aprovado':'reprovado'}}</span>
+          </h6>
+        </ng-container>
+        <ng-template #elseStatus>
+          <chat-inv-user-status [groupId]="groupId" [invitation]="inv" (onSuccess)="onStatusChange($event, inv)"></chat-inv-user-status>
+        </ng-template>
+
+
+      </td>
+      <td>{{inv.created_at?.date | date: 'dd/MM/yyyy' }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="pageChanged($event)"
+                        previousLabel="Anterior"
+                        nextLabel="Próximo"></pagination-controls>
+</div>
+
+

@@ -38,6 +38,23 @@ export interface User {
     date: string;
   };
 }
+export enum ChatInvitationUserStatus {
+  PENDING = 1,
+  APPROVE = 2,
+  REPROVED = 3,
+}
+export interface ChatInvitationUser {
+  id?: number;
+  user: User;
+  status: ChatInvitationUserStatus;
+  readonly created_at?: {
+    date: string;
+  };
+  readonly updated_at?: {
+    date: string;
+  };
+}
+
 export interface UserProfile {
   photo_url: string;
   phone_number: string;
