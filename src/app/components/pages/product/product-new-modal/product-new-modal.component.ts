@@ -42,7 +42,8 @@ export class ProductNewModalComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
       description: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      active: true
+      active: true,
+      photo: [null, [Validators.required]]
     });
   }
 

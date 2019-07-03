@@ -18,6 +18,8 @@ export interface Product {
   price: number;
   readonly slug?: string;
   active: boolean;
+  photo: File;
+  photo_url: string;
   readonly created_at?: {
     date: string;
   };

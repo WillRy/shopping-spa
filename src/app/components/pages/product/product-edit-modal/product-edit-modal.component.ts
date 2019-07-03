@@ -41,6 +41,8 @@ export class ProductEditModalComponent implements OnInit {
 
   errors = {};
 
+  product: Product;
+
   _productId: number;
 
   constructor(private productHttp: ProductHttpService, private formBuilder: FormBuilder) {
@@ -48,7 +50,8 @@ export class ProductEditModalComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
       description: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      active: true
+      active: true,
+      photo: null
     });
   }
 
@@ -58,7 +61,10 @@ export class ProductEditModalComponent implements OnInit {
   set productId(value) {
     this._productId = value;
     if (this._productId) {
-      this.productHttp.get(this._productId).subscribe(response => this.form.patchValue(response));
+      this.productHttp.get(this._productId).subscribe(response => {
+        this.product = response;
+        this.form.patchValue(response);
+      });
     }
   }
 

@@ -25,3 +25,9 @@
   <input type="checkbox" class="form-check-input" name="active" formControlName="active" [id]="fieldsOptions.active.id">
   <label class="form-check-label">Ativo?</label>
 </div>
+
+<div class="form-group" [formGroup]="form">
+  <label for="photo">Foto do Produto</label>
+  <input class="form-control-file" type="file" name="photo" id="photo"
+      (change)="onChoosePhoto($event.target.files)">
+</div>
