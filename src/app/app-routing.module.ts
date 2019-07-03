@@ -69,6 +69,8 @@ const routes: Routes = [{
       { path: ':chat_group/users/list', loadChildren: './components/pages/chat-group-user/chat-group-user.module#ChatGroupUserModule'},
       // tslint:disable-next-line: max-line-length
       { path: ':chat_group/link-invitations/list', loadChildren: './components/pages/chat-group-link-inv/chat-group-link-inv.module#ChatGroupLinkInvModule'},
+      // tslint:disable-next-line: max-line-length
+      { path: ':chat_group/user-invitations/list', loadChildren: './components/pages/chat-inv-user/chat-inv-user.module#ChatInvUserModule'},
     ],
     canActivate: [AuthGuard]
   },

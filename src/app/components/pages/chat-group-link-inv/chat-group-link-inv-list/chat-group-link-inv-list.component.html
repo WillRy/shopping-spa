@@ -8,10 +8,11 @@
       </td>
     </tr>
     <tr>
-      <th style="width: 5%" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
-      <th style="width: 45%">Total</th>
-      <th style="width: 25%">Remaining</th>
-      <th style="width: 25%" [sortColumn]="sortColumn" columnName="expires_at" (onSort)="sort($event)">Expira</th>
+      <th  [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
+      <th >Link</th>
+      <th >Total</th>
+      <th >Remaining</th>
+      <th  [sortColumn]="sortColumn" columnName="expires_at" (onSort)="sort($event)">Expira</th>
       <th style="width: 10%">Ações</th>
     </tr>
     </thead>
@@ -21,6 +22,9 @@
                 currentPage: pagination.page,
                 totalItems: pagination.totalItems}">
       <td>{{linkInv.id}}</td>
+      <td>
+        <a [href]="linkInv.link">Link</a>
+      </td>
       <td>{{linkInv.total}}</td>
       <td>{{linkInv.remaining}}</td>
       <td>{{linkInv.expires_at?.date | date: 'dd/MM/yyyy' }}</td>
