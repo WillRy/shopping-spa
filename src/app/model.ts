@@ -114,6 +114,7 @@ export interface ChatGroupLinkInvitation {
   id?: number;
   total: number;
   remaining: number;
+  link: string;
   group?: number;
   expires_at?: number;
   readonly created_at?: {
