@@ -26,8 +26,7 @@ export class CategoryDeleteService {
     }
 
     showModalDelete(categoryId: number) {
-        this.__categoryListComponent.categoryId = categoryId;
-        this.__categoryListComponent.categoryDeleteModal.showModal();
+        this.__categoryListComponent.categoryDeleteModal.showModal(categoryId);
     }
 
     onDeleteSuccess($event: any) {
