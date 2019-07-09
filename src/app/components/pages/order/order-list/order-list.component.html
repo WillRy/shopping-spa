@@ -24,7 +24,7 @@
           <td>{{ order.id }}</td>
           <td>{{ order.created_at.date | date: 'dd/MM/yyyy' }}</td>
           <td>{{ order.user.name +' | '+ order.user.profile.phone_number }}</td>
-          <td>{{ order.status }}</td>
+          <td><order-status [status]="order.status"></order-status></td>
           <td>{{ order.product.name }}</td>
           <td>{{ order.total | numberFormatBr}}</td>
           <td>
