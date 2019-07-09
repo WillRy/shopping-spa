@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderSearchFormComponent } from './order-search-form/order-search-form.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     SharedModule,
     NgxPaginationModule
   ],
-  declarations: [OrderListComponent],
+  declarations: [OrderListComponent, OrderSearchFormComponent],
   exports: [],
   providers: []
 })
