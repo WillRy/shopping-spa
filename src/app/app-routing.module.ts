@@ -75,6 +75,11 @@ const routes: Routes = [{
     canActivate: [AuthGuard]
   },
   {
+    path: 'orders',
+    loadChildren: './components/pages/order/order.module#OrderModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
