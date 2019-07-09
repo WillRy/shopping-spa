@@ -32,7 +32,7 @@ export class ChatInvUserStatusComponent implements OnInit {
   }
 
   reprove() {
-    this.update(ChatInvitationUserStatus.REPROVED);
+    this.update(ChatInvitationUserStatus.REPROVE);
   }
 
   update(status: ChatInvitationUserStatus) {
