@@ -52,7 +52,7 @@
 </main>
 <chat-group-new-modal (onSuccess)="chatGroupInsertService.onInsertSuccess($event)"
   (onError)="chatGroupInsertService.onInsertError($event)"></chat-group-new-modal>
-<chat-group-edit-modal [chatGroupId]="chatGroupId" (onSuccess)="chatGroupEditService.onEditSuccess($event)"
+<chat-group-edit-modal (onSuccess)="chatGroupEditService.onEditSuccess($event)"
   (onError)="chatGroupEditService.onEditError($event)"></chat-group-edit-modal>
-<chat-group-delete-modal [chatGroupId]="chatGroupId" (onSuccess)="chatGroupDeleteService.onDeleteSuccess($event)"
+<chat-group-delete-modal (onSuccess)="chatGroupDeleteService.onDeleteSuccess($event)"
   (onError)="chatGroupDeleteService.onDeleteError($event)"></chat-group-delete-modal>

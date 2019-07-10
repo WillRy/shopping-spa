@@ -43,7 +43,7 @@
 </main>
 <user-new-modal (onSuccess)="userInsertService.onInsertSuccess($event)"
   (onError)="userInsertService.onInsertError($event)"></user-new-modal>
-<user-edit-modal [userId]="userId" (onSuccess)="userEditService.onEditSuccess($event)"
+<user-edit-modal (onSuccess)="userEditService.onEditSuccess($event)"
   (onError)="userEditService.onEditError($event)"></user-edit-modal>
-<user-delete-modal [userId]="userId" (onSuccess)="userDeleteService.onDeleteSuccess($event)"
+<user-delete-modal (onSuccess)="userDeleteService.onDeleteSuccess($event)"
   (onError)="userDeleteService.onDeleteError($event)"></user-delete-modal>

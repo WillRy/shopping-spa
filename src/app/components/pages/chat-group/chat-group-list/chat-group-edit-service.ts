@@ -25,8 +25,7 @@ export class ChatGroupEditService {
         this._chatGroupListComponent = value;
     }
     showModalEdit(chatGroupId: number) {
-        this._chatGroupListComponent.chatGroupId = chatGroupId;
-        this._chatGroupListComponent.chatGroupEditModal.showModal();
+        this._chatGroupListComponent.chatGroupEditModal.showModal(chatGroupId);
     }
 
     onEditSuccess($event: any) {

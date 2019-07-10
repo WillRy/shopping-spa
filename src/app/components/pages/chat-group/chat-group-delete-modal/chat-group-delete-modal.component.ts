@@ -43,6 +43,7 @@ export class ChatGroupDeleteModalComponent implements OnInit {
       .subscribe(
         () => {
           this.onSuccess.emit(true);
+          this.chatGroup = null;
           this.modal.hide();
         },
         responseError => {
@@ -54,19 +55,18 @@ export class ChatGroupDeleteModalComponent implements OnInit {
     return false;
   }
 
-  @Input()
-  set chatGroupId(value) {
-    this._chatGroupId = value;
-    if (this._chatGroupId) {
-      this.chatGroupHttp.get(this._chatGroupId).subscribe(chatGroup => {
-        this.chatGroup = chatGroup;
-      });
-    }
-  }
-
-  showModal() {
+  showModal(chatGroupId) {
+    this._chatGroupId = chatGroupId;
+    this.getChatGroup();
     this.modal.show();
   }
+
+  getChatGroup() {
+    this.chatGroupHttp.get(this._chatGroupId).subscribe(chatGroup => {
+      this.chatGroup = chatGroup;
+    });
+  }
+
   hideModal($event) {
     this.modal.hide();
   }

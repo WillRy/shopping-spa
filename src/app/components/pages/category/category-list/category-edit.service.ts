@@ -25,8 +25,7 @@ export class CategoryEditService {
         this.__categoryListComponent = value;
     }
     showModalEdit(categoryId: number) {
-        this.__categoryListComponent.categoryId = categoryId;
-        this.__categoryListComponent.categoryEditModal.showModal();
+        this.__categoryListComponent.categoryEditModal.showModal(categoryId);
     }
 
     onEditSuccess($event: any) {

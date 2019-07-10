@@ -46,5 +46,5 @@
 </main>
 
 <category-new-modal (onSuccess)="categoryInsertService.onInsertSuccess($event)" (onError)="categoryInsertService.onInsertError($event)"></category-new-modal>
-<category-edit-modal [categoryId]="categoryId" (onSuccess)="categoryEditService.onEditSuccess($event)" (onError)="categoryEditService.onEditError($event)"></category-edit-modal>
-<category-delete-modal [categoryId]="categoryId" (onSuccess)="categoryDeleteService.onDeleteSuccess($event)" (onError)="categoryDeleteService.onDeleteError($event)"></category-delete-modal>
+<category-edit-modal (onSuccess)="categoryEditService.onEditSuccess($event)" (onError)="categoryEditService.onEditError($event)"></category-edit-modal>
+<category-delete-modal (onSuccess)="categoryDeleteService.onDeleteSuccess($event)" (onError)="categoryDeleteService.onDeleteError($event)"></category-delete-modal>

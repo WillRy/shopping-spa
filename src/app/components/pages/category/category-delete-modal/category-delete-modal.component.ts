@@ -42,13 +42,7 @@ export class CategoryDeleteModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  @Input()
-  set categoryId(value) {
-    this._categoryId = value;
-    if (this._categoryId) {
-      this.categoryHttp.get(this._categoryId).subscribe(response => this.category = response);
-    }
-  }
+
 
   destroy() {
     this.categoryHttp.destroy(this._categoryId)
@@ -64,8 +58,14 @@ export class CategoryDeleteModalComponent implements OnInit {
     return false;
   }
 
-  showModal() {
+  showModal(categoryId) {
+    this._categoryId = categoryId;
+    this.getCategory();
     this.modal.show();
+  }
+
+  getCategory() {
+    this.categoryHttp.get(this._categoryId).subscribe(category => this.category = category);
   }
 
   hideModal($event) {

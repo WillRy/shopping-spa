@@ -61,6 +61,8 @@ export class ChatGroupEditModalComponent implements OnInit {
     this.chatGroupHttp.update(this._chatGroupId, this.form.value)
       .subscribe(
         (chatGroup) => {
+          this.form.reset({name: ''});
+          this.chatGroup = null;
           this.onSuccess.emit(chatGroup);
           this.modal.hide();
 
@@ -74,20 +76,21 @@ export class ChatGroupEditModalComponent implements OnInit {
     return false;
   }
 
-  @Input()
-  set chatGroupId(value) {
-    this._chatGroupId = value;
-    if (this._chatGroupId) {
-      this.chatGroupHttp.get(this._chatGroupId).subscribe(chatGroup => {
-        this.chatGroup = chatGroup;
-        this.form.patchValue(chatGroup);
-      });
-    }
-  }
 
-  showModal() {
+
+  showModal(chatGroupId) {
+    this._chatGroupId = chatGroupId;
+    this.getChatGroup();
     this.modal.show();
   }
+
+  getChatGroup() {
+    this.chatGroupHttp.get(this._chatGroupId).subscribe(chatGroup => {
+      this.chatGroup = chatGroup;
+      this.form.patchValue(chatGroup);
+    });
+  }
+
   hideModal($event) {
     this.modal.hide();
   }

@@ -41,23 +41,21 @@ export class UserEditModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(fieldsOptions.name.validationMessage.maxlength)]],
       email: ['', [Validators.email]],
-      password: ['']
+      password: null
     });
   }
 
   ngOnInit() {}
 
-  @Input()
-  set userId(value) {
-    this._userId = value;
-    if (this._userId) {
-      this.userHttp.get(this._userId).subscribe(response => this.form.patchValue(response));
-    }
-  }
 
   submit() {
-    this.userHttp.update(this._userId, this.form.value).subscribe(
+    const data = Object.assign({}, this.form.value);
+    if (!this.form.get('password').value) {
+      delete data.password;
+    }
+    this.userHttp.update(this._userId, data).subscribe(
       (user) => {
+        this.form.reset({name: '', email: '', password: null});
         this.onSuccess.emit(user);
         this.modal.hide();
       },
@@ -69,9 +67,16 @@ export class UserEditModalComponent implements OnInit {
       });
   }
 
-  showModal() {
+  showModal(userId) {
+    this._userId = userId;
+    this.getUser();
     this.modal.show();
   }
+
+  getUser() {
+    this.userHttp.get(this._userId).subscribe(response => this.form.patchValue(response));
+  }
+
   hideModal($event) {
     this.modal.hide();
   }

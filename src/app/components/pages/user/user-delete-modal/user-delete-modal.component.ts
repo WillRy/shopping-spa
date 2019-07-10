@@ -30,16 +30,15 @@ export class UserDeleteModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input()
-  set userId(value) {
-    this._userId = value;
-    if (this._userId) {
-      this.userHttp.get(this._userId).subscribe(response => this.user = response);
-    }
+
+  showModal(userId) {
+    this._userId = userId;
+    this.getUser();
+    this.modal.show();
   }
 
-  showModal() {
-    this.modal.show();
+  getUser() {
+    this.userHttp.get(this._userId).subscribe(response => this.user = response);
   }
 
   hideModal($event) {
