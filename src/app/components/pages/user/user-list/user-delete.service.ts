@@ -26,8 +26,7 @@ export class UserDeleteService {
     }
 
     showModalDelete(userId: number) {
-        this._userListComponent.userId = userId;
-        this._userListComponent.userDeleteModal.showModal();
+        this._userListComponent.userDeleteModal.showModal(userId);
     }
 
     onDeleteSuccess($event: any) {
