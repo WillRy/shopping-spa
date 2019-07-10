@@ -54,17 +54,12 @@ export class ProductEditModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  @Input()
-  set productId(value) {
-    this._productId = value;
-    if (this._productId) {
-      this.productHttp.get(this._productId).subscribe(response => this.form.patchValue(response));
-    }
-  }
+
 
   submit() {
     this.productHttp.update(this._productId, this.form.value).subscribe(
       (product) => {
+        this.form.reset({name: '', description: '', price: ''});
         this.onSuccess.emit(product);
         this.modal.hide();
       },
@@ -76,9 +71,16 @@ export class ProductEditModalComponent implements OnInit {
       });
   }
 
-  showModal() {
+  showModal(productId) {
+    this._productId = productId;
+    this.getProduct();
     this.modal.show();
   }
+
+  getProduct() {
+    this.productHttp.get(this._productId).subscribe(response => this.form.patchValue(response));
+  }
+
   hideModal($event) {
     this.modal.hide();
   }

@@ -18,9 +18,9 @@ export class ProductEditService {
     set productListComponent(value: ProductListComponent) {
         this.__productListComponent = value;
     }
+
     showModalEdit(productId: number) {
-        this.__productListComponent.productId = productId;
-        this.__productListComponent.productEditModal.showModal();
+        this.__productListComponent.productEditModal.showModal(productId);
     }
 
     onEditSuccess($event: any) {

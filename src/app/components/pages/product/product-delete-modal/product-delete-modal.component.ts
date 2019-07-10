@@ -43,13 +43,6 @@ export class ProductDeleteModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  @Input()
-  set productId(value) {
-    this._productId = value;
-    if (this._productId) {
-      this.productHttp.get(this._productId).subscribe(response => this.product = response);
-    }
-  }
 
   destroy() {
     this.productHttp.destroy(this._productId)
@@ -65,8 +58,14 @@ export class ProductDeleteModalComponent implements OnInit {
     return false;
   }
 
-  showModal() {
+  showModal(productId) {
+    this._productId = productId;
+    this.getProduct();
     this.modal.show();
+  }
+
+  getProduct() {
+    this.productHttp.get(this._productId).subscribe(response => this.product = response);
   }
 
   hideModal($event) {
