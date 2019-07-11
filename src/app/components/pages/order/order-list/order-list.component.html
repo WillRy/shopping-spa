@@ -28,7 +28,9 @@
           <td>{{ order.product.name }}</td>
           <td>{{ order.total | numberFormatBr}}</td>
           <td>
-
+            <a href="javascript:void(0)" (click)="orderEditService.showModalEdit(order.id)">
+              <i class="fas fa-edit"></i>
+            </a>
           </td>
         </tr>
       </tbody>
@@ -37,4 +39,4 @@
     <pagination-controls nextLabel="próximo" previousLabel="anterior" (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </main>
-
+<order-edit-modal (onSuccess)="orderEditService.onEditSuccess($event)" (onError)="orderEditService.onEditError($event)"></order-edit-modal>

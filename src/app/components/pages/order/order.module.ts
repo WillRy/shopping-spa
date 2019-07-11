@@ -8,6 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderSearchFormComponent } from './order-search-form/order-search-form.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
+import { OrderEditModalComponent } from './order-edit-modal/order-edit-modal.component';
+import { OrderFormComponent } from './order-form/order-form.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import { OrderStatusComponent } from './order-status/order-status.component';
     SharedModule,
     NgxPaginationModule
   ],
-  declarations: [OrderListComponent, OrderSearchFormComponent, OrderStatusComponent],
+  declarations: [OrderListComponent, OrderSearchFormComponent, OrderStatusComponent, OrderEditModalComponent, OrderFormComponent],
   exports: [],
   providers: []
 })
