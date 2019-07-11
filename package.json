@@ -35,9 +35,10 @@
     "pnotify": "^4.0.0",
     "popper.js": "^1.15.0",
     "rxjs": "~6.2.0",
-    "select2": "^4.0.3",
     "scriptjs": "^2.5.8",
+    "select2": "^4.0.3",
     "select2-bootstrap4-theme": "^1.0.0",
+    "url-regex": "^4.1.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

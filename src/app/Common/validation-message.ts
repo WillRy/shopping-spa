@@ -3,7 +3,8 @@ const messages = {
     maxlength: ':name precisa ter no máximo :maxlength caracteres',
     minlength: ':name pode ter no mínimo :minlength caracteres',
     email: ':name não é um email',
-    min: ':name deve começar de :min'
+    min: ':name deve começar de :min',
+    url: ':name não contem um endereço valido'
 };
 
 export class ValidationMessage {
