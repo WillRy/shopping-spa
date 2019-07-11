@@ -7,7 +7,7 @@ import {
   import {
     Observable
   } from 'rxjs/internal/Observable';
-  import { Category, Order } from 'src/app/model';
+  import { Category, Order, OrderStatus } from 'src/app/model';
   import {map} from 'rxjs/operators';
   import { HttpResource, SearchParams, SearchParamsBuilder } from './http-resource';
   import { AuthService } from '../auth.service';
@@ -39,7 +39,7 @@ import {
       );
     }
 
-    update(id: number, data: Order): Observable < Order > {
+    update(id: number, data: {status?: OrderStatus, obs?: string, payment_link?: string}): Observable < Order > {
       return this.http.put < {data: Order} > (`${this.baseUrl}/${id}`, data).pipe(
         map(response => response.data)
       );
