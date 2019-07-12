@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="status">
+
+  <span class="badge badge-secondary" *ngSwitchCase="STATUS_ENUM.STATUS_PENDING">
+    pendente
+  </span>
+  <span class="badge badge-info" *ngSwitchCase="STATUS_ENUM.STATUS_APPROVED">
+    Aprovado
+  </span>
+  <span class="badge badge-danger" *ngSwitchCase="STATUS_ENUM.STATUS_CANCELLED">
+    Cancelado
+  </span>
+  <span class="badge badge-success" *ngSwitchCase="STATUS_ENUM.STATUS_SENT">
+    Enviado
+  </span>
+
+</ng-container>

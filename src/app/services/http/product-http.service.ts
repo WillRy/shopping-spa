@@ -33,17 +33,31 @@ export class ProductHttpService implements HttpResource<Product> {
   }
 
   create(data: Product): Observable< Product > {
-    return this.http.post< Product >(this.baseUrl, data);
+    const formData = this.formDataToSend(data);
+    return this.http.post< Product >(this.baseUrl, formData);
   }
 
   update(id: number, data: Product): Observable < Product > {
-    return this.http.put < {data: Product} > (`${this.baseUrl}/${id}`, data).pipe(
+    const formData = this.formDataToSend(data);
+    formData.append('_method', 'PUT');
+    return this.http.post < {data: Product} > (`${this.baseUrl}/${id}`, formData).pipe(
       map(response => response.data)
     );
   }
 
   destroy(id: number): Observable < any > {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  private formDataToSend(data: Product): FormData {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('description', data.description);
+    formData.append('price', <any>data.price);
+    if (data.photo) {
+      formData.append('photo', data.photo);
+    }
+    return formData;
   }
 
 }

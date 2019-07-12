@@ -32,4 +32,13 @@ export class ProductFormComponent implements OnInit {
     return fieldsOptions;
   }
 
+  onChoosePhoto(files: FileList) {
+    if (!files.length) {
+      return;
+    }
+
+
+    this.form.get('photo').setValue(files[0]);
+  }
+
 }

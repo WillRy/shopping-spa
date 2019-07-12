@@ -1,0 +1,47 @@
+<modal (onHide)="hideModal($event)">
+    <div modal-title>
+      Editar pedido - {{order?.id}} - {{order?.user.name}}
+      <div class="row">
+        <div class="col-md-12">
+          <ng-container [ngSwitch]="order?.status">
+            <ng-container *ngSwitchCase="STATUS_ENUM.STATUS_PENDING">
+              <button type="button" class="btn btn-danger mr-2" (click)="submit(STATUS_ENUM.STATUS_CANCELLED)" [disabled]="form.invalid">
+                <i class="fas fa-ban"></i>
+              </button>
+              <button type="button" class="btn btn-success mr-2" (click)="submit(STATUS_ENUM.STATUS_APPROVED)" [disabled]="form.invalid">
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <button type="button" class="btn btn-info mr-2" (click)="submit(STATUS_ENUM.STATUS_SENT)" [disabled]="form.invalid">
+                <i class="fas fa-shipping-fast"></i>
+              </button>
+            </ng-container>
+            <ng-container *ngSwitchCase="STATUS_ENUM.STATUS_APPROVED">
+              <button type="button" class="btn btn-danger mr-2" (click)="submit(STATUS_ENUM.STATUS_CANCELLED)" [disabled]="form.invalid">
+                <i class="fas fa-ban"></i>
+              </button>
+              <button type="button" class="btn btn-info mr-2" (click)="submit(STATUS_ENUM.STATUS_SENT)" [disabled]="form.invalid">
+                <i class="fas fa-shipping-fast"></i>
+              </button>
+            </ng-container>
+            <ng-container *ngSwitchCase="STATUS_ENUM.STATUS_SENT">
+              <button type="button" class="btn btn-danger mr-2" (click)="submit(STATUS_ENUM.STATUS_CANCELLED)" [disabled]="form.invalid">
+                <i class="fas fa-ban"></i>
+              </button>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div modal-body>
+      <card-error *ngIf="showErrors()">
+        <list-error [errors]="errors"></list-error>
+      </card-error>
+
+      <order-form [order]="order" [form]="form"></order-form>
+    </div>
+    <div modal-footer>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Editar</button>
+    </div>
+  </modal>
+

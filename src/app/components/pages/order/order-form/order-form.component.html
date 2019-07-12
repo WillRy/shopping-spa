@@ -1,0 +1,97 @@
+<h3>
+  <order-status [status]="order?.status"></order-status>
+</h3>
+<div class="form-group row">
+  <div class="col-md-6">
+    <label for="total">Total</label>
+    <input
+      type="text"
+      class="form-control"
+      id="total"
+      readonly
+      [value]="order?.total | numberFormatBr"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="created_at">Criado em:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="created_at"
+      readonly
+      [value]="order?.created_at.date | date: 'dd/MM/yyyy'"
+    />
+  </div>
+</div>
+<div class="form-group">
+  <label for="user-name">Usuário</label>
+  <input
+    type="text"
+    class="form-control"
+    id="user-name"
+    readonly
+    [value]="order?.user.name"
+  />
+</div>
+<div class="form-group row">
+  <div class="col-md-4">
+    <label for="product-name">Produto</label>
+    <input
+      type="text"
+      class="form-control"
+      id="product-name"
+      readonly
+      [value]="order?.product.name"
+    />
+  </div>
+  <div class="col-md-4">
+    <label for="amount">Produto</label>
+    <input
+      type="text"
+      class="form-control"
+      id="amount"
+      readonly
+      [value]="order?.amount"
+    />
+  </div>
+  <div class="col-md-4">
+    <label for="price">Preço</label>
+    <input
+      type="text"
+      class="form-control"
+      id="price"
+      readonly
+      [value]="order?.price | numberFormatBr"
+    />
+  </div>
+</div>
+<div class="form-group" [formGroup]="form">
+  <label for="payment_link">Link de Pagamento</label>
+  <input
+    type="text"
+    class="form-control"
+    formControlName="payment_link"
+    id="payment_link"
+    isInvalid
+  />
+  <field-error
+    [field]="form.get('payment_link')"
+    label="Link de pagamento"
+    [messages]="{}"
+  ></field-error>
+</div>
+<div class="form-group" [formGroup]="form">
+  <label for="obs">Observação</label>
+  <textarea
+    class="form-control"
+    formControlName="obs"
+    id="obs"
+    cols="30"
+    rows="5"
+  ></textarea>
+  <field-error
+    [field]="form.get('obs')"
+    label="Observação"
+    [messages]="{}"
+  ></field-error>
+</div>
