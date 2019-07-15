@@ -28,7 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared.module';
 import { environment } from 'src/environments/environment';
 
-function jwtFactory(authService: AuthService) {
+export function jwtFactory(authService: AuthService) {
   return {
     tokenGetter: () => {
       return authService.getToken();
