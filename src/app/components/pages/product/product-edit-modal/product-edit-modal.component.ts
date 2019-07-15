@@ -41,6 +41,8 @@ export class ProductEditModalComponent implements OnInit {
 
   errors = {};
 
+  product: Product;
+
   _productId: number;
 
   constructor(private productHttp: ProductHttpService, private formBuilder: FormBuilder) {
@@ -78,7 +80,11 @@ export class ProductEditModalComponent implements OnInit {
   }
 
   getProduct() {
-    this.productHttp.get(this._productId).subscribe(response => this.form.patchValue(response));
+    this.productHttp.get(this._productId).subscribe(response => {
+      this.product = response;
+      this.form.patchValue(response);
+
+    });
   }
 
   hideModal($event) {
