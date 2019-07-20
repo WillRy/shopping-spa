@@ -7,20 +7,16 @@ import { FieldErrorComponent } from './components/bootstrap/field-error/field-er
 import { IsInvalidDirective, IsInvalidControlDirective } from './directives/is-invalid.directive';
 import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
-import { AuthGuard } from './guards/auth.guard';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { PhoneNumberAuthModalComponent } from './components/commom/phone-number-auth-modal/phone-number-auth-modal.component';
-import { Select2Module } from 'ng2-select2';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
-    NgxPaginationModule
+    RouterModule
   ],
   declarations: [
     ModalComponent,
@@ -47,9 +43,6 @@ import { Select2Module } from 'ng2-select2';
     AlertErrorComponent,
     NumberFormatBrPipe,
     PhoneNumberAuthModalComponent
-  ],
-  providers: [
-    AuthGuard
   ]
 })
 
